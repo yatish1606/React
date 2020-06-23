@@ -18,5 +18,5 @@ export const SideBar = () => {
             <ul className='sidebar__projects'>Projects are here</ul>
             Add project here
         </div>
-    )
+    ) 
 }
