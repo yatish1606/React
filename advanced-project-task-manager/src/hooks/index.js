@@ -29,20 +29,20 @@ export const useTasks = selectedProject => {
                 id : task.id,
                 ...task.data(),
             }))
-        })
-
         /*
             If selectedProject === the next 7 days, set tasks[] to all the tasks which are less 
             than 7 days far (difference between that task and today <= 7) from today , and which are not archived 
             else return all the tasks which are not archived
         */
-        setTasks(
-            selectedProject === 'NEXT_7' ? 
-            newTasks.filter(task => moment(task.date, 'DD-MM-YYYY').diff(moment(), 'days') <= 7 && task.archived !== true ) : 
-            newTasks.filter(task => task.archived !== true )
-        )
+            setTasks(
+                selectedProject === 'NEXT_7' ? 
+                newTasks.filter(task => moment(task.date, 'DD-MM-YYYY').diff(moment(), 'days') <= 7 && task.archived !== true ) : 
+                newTasks.filter(task => task.archived !== true )
+            )
 
-        setArchivedTasks(newTasks.filter(task => task.archived !== false))
+            setArchivedTasks(newTasks.filter(task => task.archived !== false))
+
+        })
 
         return () => unsubscribe()
 
