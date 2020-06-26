@@ -5,7 +5,7 @@ export const SideBar = () => {
     return (
         <div className='sidebar' data-testid='sidebar'>
             <ul className='sidebar__generic'>
-                <li className='sidebar__projects'><span><FaInbox/></span><span>Inbox</span></li>
+                <li><span><FaInbox/></span><span>Inbox</span></li>
                 <li><span><FaRegCalendar/></span><span>Today</span></li>
                 <li><span><FaRegCalendarAlt/></span><span>Next 7 days</span></li>
             </ul>
