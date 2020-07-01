@@ -13,6 +13,7 @@ const Cards = ({data : {confirmed, recovered, deaths, lastUpdate}}) => {
             <Grid container spacing={3} justify='center'>
                 <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.infected)}>
                     <CardContent>
+                        <div style={{backgroundColor:'yellow', width:40, height:60}}></div>
                         <Typography color='textSecondary' gutterBottom>Infected</Typography>
                         <Typography variant='h5'>
                             <CountUp
