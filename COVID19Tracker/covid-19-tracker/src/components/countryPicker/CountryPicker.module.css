@@ -1,0 +1,8 @@
+.formControl {
+    width: 40%;
+    margin-bottom: 30px !important;
+    background-color: white;
+    border-radius: 20px;
+    height: 50px;
+    padding: 20px 30px;
+}

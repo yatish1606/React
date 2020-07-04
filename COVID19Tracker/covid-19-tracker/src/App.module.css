@@ -7,4 +7,12 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-color: white;
+    font-family: monospace;
+}
+
+@media (max-width:770px) {
+    .container {
+        margin: 0 10%;
+    }
 }
