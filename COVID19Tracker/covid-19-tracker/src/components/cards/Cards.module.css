@@ -1,9 +1,11 @@
 .container {
     margin: 50px 0;
+    
 }
 
 .card {
     margin: 0 2% !important;
+    
 }
 
 .infected {
@@ -22,4 +24,25 @@
     .card {
         margin: 0 2% !important;
     }
+}
+
+.textSecondary {
+    color: #fff;
+    font-size: 20px;
+    align-self: center;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 800;
+}
+
+.cardImage  {
+    width: 70px;
+    height: 70px;
+    align-self: center;
+}
+
+.cardImageDiv {
+    width:'100%'; 
+    height:80;
+    justify-content: center;
+    align-items: center;
 }
