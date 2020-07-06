@@ -9,7 +9,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: #282926;
+    background-color: #202020;
     font-family: monospace;
     padding: 0;
     margin: 0;
@@ -31,6 +31,7 @@ body {
     justify-content: center;
     flex-direction: row;
     display: flex;
+    margin-top: 20px;
 }
 
 .logoTitle { 

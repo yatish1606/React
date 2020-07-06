@@ -51,8 +51,9 @@ export default class App extends React.Component {
           <span className={styles.logoTitle}>VID-19</span>
           <span className={styles.logoTitle} style={{marginLeft:15}}> Tracker </span>
         </div>
-        <Cards data={data} />
         <CountryPicker handleCountryChange={this.handleCountryChange}/>
+        <Cards data={data} />
+        
         <Chart data={data} country={country} />
       </div>
       </ThemeProvider>

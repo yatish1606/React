@@ -5,7 +5,7 @@
 
 .card {
     margin: 0 2% !important;
-    display: flex;
+    width: 20rem;
 }
 
 .infected {
@@ -59,7 +59,8 @@
 
 .numbers {
     font-family: 'Nunito Sans', 'sans-serif';
-    font-size: 35px;
+    font-size: 38px;
+    letter-spacing: 2px;
     font-weight: 800;
     color: #eee;
     align-self: center;
@@ -67,4 +68,18 @@
     display: flex;
     align-items: center;
     flex-direction: row;
+}
+
+.updateDate {
+    font-family: 'Nunito Sans', 'sans-serif';
+    font-size: 15px;
+    color: #ababab;
+    margin-top: 10px;
+}
+
+.description {
+    font-family: 'Nunito Sans', 'sans-serif';
+    font-size: 15px;
+    color: #ababab;
+    
 }
