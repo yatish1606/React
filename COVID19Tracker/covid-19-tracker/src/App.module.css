@@ -22,7 +22,6 @@ body {
 }
 
 .imageLogo {
-    margin-top: 20px;
     width: 70px;
 }
 
@@ -31,6 +30,7 @@ body {
     align-self: center;
     justify-content: center;
     flex-direction: row;
+    display: flex;
 }
 
 .logoTitle { 
@@ -38,7 +38,7 @@ body {
     font-size: 80px;
     color:#f6f6f6;
     font-weight: 800 ;
-    margin-bottom: 15px;
+    
 }
 
 .logoTitleSmall { 

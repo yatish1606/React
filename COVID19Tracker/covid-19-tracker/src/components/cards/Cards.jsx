@@ -16,22 +16,24 @@ const Cards = ({data : {confirmed, recovered, deaths, lastUpdate}}) => {
                 <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.infected)} style={{backgroundColor:'#1E1C1C'}}>
                     <Fade in timeout={1000}>
                         <div>
-                            <CardContent>
-                                <div className={styles.cardImageDiv}>
-                                    <img src={Confirmed} alt='confirmed' className={styles.cardImage}/>
-                                </div>
-                                <Typography gutterBottom className={styles.textSecondary}>Infected</Typography>
-                                <Typography variant='h5'>
-                                    <CountUp
-                                        start={0}
-                                        end={confirmed.value}
-                                        duration={2}
-                                        separator=','
-                                    />
-                                </Typography>
-                                <Typography color='textSecondary'>{new Date(lastUpdate).toDateString()}</Typography>
-                                <Typography variant='body2'>Number of active COVID-19 cases</Typography>
-                            </CardContent>
+                            
+                                <CardContent>
+                                    <div className={styles.cardImageDiv}>
+                                        <img src={Confirmed} alt='confirmed' className={styles.cardImage}/>
+                                    </div>
+                                    <span className={styles.cardTitle}>INFECTED</span>
+                                    <div className={styles.numbers}>
+                                        <CountUp
+                                            start={0}
+                                            end={confirmed.value}
+                                            duration={2}
+                                            separator=','
+                                        />
+                                    </div>
+                                    <Typography color='textSecondary'>{new Date(lastUpdate).toDateString()}</Typography>
+                                    <Typography variant='body2'>Number of active COVID-19 cases</Typography>
+                                </CardContent>
+                           
                         </div>     
                     </Fade>
                 </Grid>

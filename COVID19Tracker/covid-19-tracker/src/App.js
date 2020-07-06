@@ -3,6 +3,22 @@ import {Cards, Chart, CountryPicker} from './components'
 import styles from './App.module.css'
 import {fetchData} from './api'
 import LogoImage from './images/virus.png'
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+const THEME = createMuiTheme({
+    typography: {
+      fontFamily: [
+        'Nunito Sans',
+        'Arial',
+        'sans-serif'
+      ].join(','),
+      fontSize : 15,
+      fontWeight : 800,
+      color : '#fff'
+    }
+  });
+
 
 export default class App extends React.Component {
 
@@ -27,17 +43,19 @@ export default class App extends React.Component {
     const {data, country} = this.state
 
     return (
+      <ThemeProvider theme={THEME}>
       <div className={styles.container}>
         <div className={styles.titleDiv}>
-          <span className={styles.logoTitle}>C </span>
+          <span className={styles.logoTitle}>C</span>
           <img src={LogoImage} alt='covid' className={styles.imageLogo}/>
-          <span className={styles.logoTitle}> VID-19 </span>
-          <span className={styles.logoTitle}> Tracker </span>
+          <span className={styles.logoTitle}>VID-19</span>
+          <span className={styles.logoTitle} style={{marginLeft:15}}> Tracker </span>
         </div>
         <Cards data={data} />
         <CountryPicker handleCountryChange={this.handleCountryChange}/>
         <Chart data={data} country={country} />
       </div>
+      </ThemeProvider>
     )
   }
 }
