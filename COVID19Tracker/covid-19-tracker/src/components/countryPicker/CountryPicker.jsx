@@ -24,7 +24,7 @@ const CountryPicker = ({handleCountryChange}) => {
                 defaultValue='' 
                 onMouseEnter = { () => toggleOpen(true)}
                 onMouseLeave = { () => toggleOpen(false)}
-                style = {styles.formControl}
+                
                 onChange={(event) => {
                 handleCountryChange(event.target.value)
                 toggleOpen(false)
