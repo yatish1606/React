@@ -4,6 +4,8 @@ import cors from 'cors';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 const chalk = require('chalk')
+import multer from 'multer';
+import path from 'path';
 
 import {connect} from './database'
 import AppRouter from './router'
@@ -11,6 +13,17 @@ import AppRouter from './router'
 const PORT = 3000;
 const app = express();
 app.server = http.createServer(app);
+
+const storageDirectory = path.join(__dirname, '..' , 'storage')
+const storageConfig = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, storageDirectory)
+    },
+    filename: (req, file, cb) => {
+      cb(null, Date.now() + path.extname(file.originalname))
+    }
+})
+const upload = multer({storage: storageConfig})
 
 
 app.use(morgan('dev'));
@@ -25,6 +38,8 @@ app.use(bodyParser.json({
 }));
 
 app.set('root', __dirname);
+app.set('storageDirectory', storageDirectory)
+app.set('upload', upload)
 
 connect( (err,db) => {
 
