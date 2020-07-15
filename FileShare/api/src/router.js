@@ -1,6 +1,8 @@
 const chalk = require('chalk')
-import path from 'path';
+import path from 'path'
 import {version} from '../package.json'
+import _ from 'lodash'
+import File from './models/file'
 
 class AppRouter {
     constructor(app) {
@@ -23,9 +25,14 @@ class AppRouter {
         // Upload file
         app.post('/api/upload', upload.array('files') ,(req, res, next) => {
             console.log(chalk.white('Uploaded File recieved : ', req.files))
-            const files = req.files
+            const files = _.get(req, 'files', [])
+            let fileModels = []
+            _.each(files, (fileObject) => {
+                const newFile = new File(app).initWithObject(fileObject).toJSON()
+                fileModels.push(newFile)
+            })
             return res.json({
-                files
+                files : fileModels
             })
         })
 

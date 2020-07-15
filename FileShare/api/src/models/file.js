@@ -1,4 +1,5 @@
 import _ from 'lodash'
+
 class File {
     constructor(app, object){
         this.app = app;
@@ -17,6 +18,12 @@ class File {
         this.model.originalName = _.get(object,'originalName')
         this.model.mimeType = _.get(object,'mimeType')
         this.model.size = _.get(object,'size')
+        this.model.created = Date.now()
+        return this
+    }
+
+    toJSON(){
+        return this.model
     }
 
     save(callback){
@@ -26,5 +33,6 @@ class File {
             return callback(err,result)
         })
     }
-
 }
+
+export default File
