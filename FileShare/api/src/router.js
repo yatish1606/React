@@ -33,8 +33,16 @@ class AppRouter {
         app.get('/api/download/:name', (req, res, next) => {
             const fileName = req.params.name
             const filePath = path.join(uploadDirectory,fileName)
-            res.json({
-                hi:fileName
+            return res.download(filePath, fileName, err => {
+                if(err){
+                    return res.json({
+                        error:{
+                            message:'File not found'
+                        }
+                    })
+                } else {
+                    console.log(chalk.green('File is successfully downloaded'))
+                }
             })
         })
         
