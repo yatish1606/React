@@ -59,12 +59,13 @@ class AppRouter {
             db.collection('files').find({ _id: ObjectID(fileID) }).toArray((err, result) => {
 
                 console.log(chalk.white('Searching for file', err, result))
+                
+                const fileName = _.get(result, '[0].name')
 
-                if(err || !result){
+                if(err || !fileName){
                     return res.status(404).json({ error : {message:'File not found'}})
                 }
 
-                const fileName = _.get(result, '[0].name')
                 const filePath = path.join(uploadDirectory,fileName)
 
                 return res.download(filePath, fileName, err => {
