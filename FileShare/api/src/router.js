@@ -13,6 +13,7 @@ class AppRouter {
     setupRouters() {
 
         const app = this.app
+        const db = app.get('db')
         const uploadDirectory = app.get('storageDirectory')
         const upload = app.get('upload')
 
@@ -24,13 +25,31 @@ class AppRouter {
 
         // Upload file
         app.post('/api/upload', upload.array('files') ,(req, res, next) => {
+
             console.log(chalk.white('Uploaded File recieved : ', req.files))
+
             const files = _.get(req, 'files', [])
             let fileModels = []
+
             _.each(files, (fileObject) => {
                 const newFile = new File(app).initWithObject(fileObject).toJSON()
                 fileModels.push(newFile)
             })
+
+            if(fileModels.length){
+                db.collection('files').insertMany(fileModels, (err,result) => {
+                    if(err){
+                        return res.status(503).json({ message: 'Unable to upload file'})
+                    }
+                    console.log(chalk.green('Saved files with results ', err, result))
+                    return res.json({
+                        file: fileModels
+                    })
+                })
+            } else {
+                return res.status(503).json({ error: 'File upload is required'})
+            }
+
             return res.json({
                 files : fileModels
             })

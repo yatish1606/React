@@ -14,9 +14,9 @@ class File {
     }
 
     initWithObject(object){
-        this.model.name = _.get(object,'name')
-        this.model.originalName = _.get(object,'originalName')
-        this.model.mimeType = _.get(object,'mimeType')
+        this.model.name = _.get(object,'filename')
+        this.model.originalName = _.get(object,'originalname')
+        this.model.mimeType = _.get(object,'mimetype')
         this.model.size = _.get(object,'size')
         this.model.created = Date.now()
         return this

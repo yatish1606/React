@@ -45,7 +45,7 @@ connect( (err,db) => {
 
     if(err) {
         console.log(chalk.red('There was an error connecting to the database'))
-        throw err
+        // throw err
     }  
 
     app.set('db',db)
