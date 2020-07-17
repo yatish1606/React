@@ -7,3 +7,35 @@ body {
   font-family: 'Nunito Sans', 'sans-serif';
   background: $primary-color;
 }
+
+*{
+  box-sizing: border-box;
+}
+
+.app-layout {
+  max-width: 1000px;
+  margin: 0 auto;
+  @media (min-width: $screen-md){
+    padding: 100px 50px 50px 50px;
+  }
+}
+
+.app-container {
+  position: relative;
+  overflow: hidden;
+  
+  .app-header {
+    
+  }
+  .app-content {
+    
+  }
+  @media (min-width:$screen-md){
+    .app-header{
+      float: left;
+    }
+    .app-content{
+      float: right
+    }
+  }
+}

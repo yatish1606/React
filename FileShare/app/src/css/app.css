@@ -59,4 +59,31 @@ body {
   background: #1b65f6;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+.app-layout {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+@media (min-width: 992px) {
+  .app-layout {
+    padding: 100px 50px 50px 50px;
+  }
+}
+
+.app-container {
+  position: relative;
+  overflow: hidden;
+}
+@media (min-width: 992px) {
+  .app-container .app-header {
+    float: left;
+  }
+  .app-container .app-content {
+    float: right;
+  }
+}
+
 /*# sourceMappingURL=app.css.map */
