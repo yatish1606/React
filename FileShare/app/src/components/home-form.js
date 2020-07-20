@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 
 export default class HomeForm extends Component {
 
@@ -10,11 +11,46 @@ export default class HomeForm extends Component {
                 from:'',
                 to:'',
                 message:''
+            },
+            errors : {
+                to:null,
+                from:null,
+                message:null
             }
         }
 
         this._onChangeText = this._onChangeText.bind(this)
         this._onSubmit = this._onSubmit.bind(this)
+        this._formValidation = this._formValidation.bind(this)
+    
+    }
+
+    _isEmail(email) {
+        const emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        return emailRegex.test(email)
+    }
+
+    _formValidation(fields = []) {
+
+        const {form} = this.state
+
+        const validations = {
+            from : [
+                {
+                    errorMessage: 'From is required',
+                    isValid: () => {
+                        return form.from.length
+                    }
+                },
+                {
+                    errorMessage: 'Email is invalid',
+                    isValid: () => {
+                        return this._isEmail(form.from)
+                    }
+                }
+            ]
+        }
+
     }
 
     _onSubmit(event) {
