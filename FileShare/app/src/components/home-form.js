@@ -1,10 +1,45 @@
 import React, { Component } from 'react'
 
 export default class HomeForm extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            form : {
+                from:'',
+                to:'',
+                message:''
+            }
+        }
+
+        this._onChangeText = this._onChangeText.bind(this)
+        this._onSubmit = this._onSubmit.bind(this)
+    }
+
+    _onSubmit(event) {
+        event.preventDefault()
+        console.log(this.state.form)
+    }
+
+    _onChangeText(event) {
+        
+        let {form} = this.state
+        const fieldName = event.target.name
+        const fieldValue = event.target.value
+
+        form[fieldName] = fieldValue
+
+        this.setState({form:form})
+    }
+    
     render() {
+
+        const {form} = this.state
+
         return (
             <div className="app-card">
-                <form>
+                <form onSubmit={this._onSubmit}>
                     <div className="app-card-header">
                         <div className="app-card-header-inner">
                             <div className="app-file-select-zone">
@@ -20,17 +55,17 @@ export default class HomeForm extends Component {
                         <div className="app-card-content-inner">
                             <div className="app-form-item">
                                 <label htmlFor="to">SEND TO</label>
-                                <input name="to" placeholder="Email address here" type="text" id="to"></input>
+                                <input onChange={this._onChangeText} value={form.to} name="to" placeholder="Email address here" type="text" id="to"></input>
                             </div>
                               
                             <div className="app-form-item">
                                 <label htmlFor="from">FROM</label>
-                                <input name="from" placeholder="Your email address here" type="text" id="to"></input>
+                                <input onChange={this._onChangeText} value={form.from} name="from" placeholder="Your email address here" type="text" id="to"></input>
                             </div>
                                         
                             <div className="app-form-item">
                                 <label htmlFor="message">MESSAGE</label>
-                                <textarea placeholder="Add an optional message" name="message" id="message"></textarea>
+                                <textarea onChange={this._onChangeText} value={form.message} placeholder="Add an optional message" name="message" id="message"></textarea>
                             </div>
 
                             <div className="app-form-actions">

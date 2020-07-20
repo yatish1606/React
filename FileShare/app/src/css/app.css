@@ -197,6 +197,7 @@ body {
   font-weight: 600;
   color: #1b65f6;
   background: #fff;
+  text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
 }
 .app-form-actions .app-button.primary {
