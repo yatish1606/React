@@ -1,16 +1,18 @@
-@import 'https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap';
-@import 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400;600;700;800;900&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;700;800;900&display=swap';
 @import "reset";
 @import "variable";
 
 body {
   font-family: 'Nunito Sans', 'sans-serif';
   background: $primary-color;
+  color: $body-text-color;
+  font-size: 14px;
 }
 
 *{
   box-sizing: border-box;
-}
+} 
 
 .app-layout {
   max-width: 1000px;
@@ -25,7 +27,30 @@ body {
   overflow: hidden;
   
   .app-header {
-    
+    color: #fff;
+    .app-site-info{
+      color: #fff;
+      h1{
+        margin: 0;
+        padding: 0;
+        font-size:60px;
+        font-weight: 800; 
+      }
+      .site-title{
+        margin: 10px 0 0 0;
+        padding: 0;
+        font-size: 50px;
+        font-weight: 200;
+        color: #eee;
+        font-family: 'Montserrat', sans-serif;
+      }
+      .site-slogan{
+        margin-top: 10px;
+        font-size: 30px;
+        padding:0;
+        font-family: 'Montserrat', sans-serif;
+      }
+    }
   }
   .app-content {
     
@@ -37,5 +62,54 @@ body {
     .app-content{
       float: right
     }
+  }
+}
+
+.app-card {
+  background-color: #fff;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+
+  @media (min-width:$screen-sm){
+    width:350px
+  }
+
+  .app-card-header{
+    background-color: #f6f6f6;
+    .app-card-header-inner{
+      padding:10px
+    }
+  }
+  .app-card-content{
+    .app-card-content-inner{
+      padding:10px
+    }
+  }
+}
+
+.app-file-select-zone{
+  width:100%;
+  display:block;
+  text-align: center;
+  label{
+    width:100%;
+    display:block;
+    input{
+      position: fixed;
+      top:-9999px;
+    }
+  }
+  .app-upload-description{
+    font-size: 12px;
+    display: block;
+  }
+  .app-upload-icon{
+    width: 80px;
+    height: 40px;
+    border: 1px dashed $body-text-color;
+    display: inline-block;
+    margin-bottom: 10px;
+    border-radius: 3px;
   }
 }

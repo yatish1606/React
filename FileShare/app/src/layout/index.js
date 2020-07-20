@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import Home from '../pages/home'
 
 export default class Layout extends Component {
     constructor (props) {
@@ -8,14 +9,7 @@ export default class Layout extends Component {
     render () {
         return (
             <div className="app-layout">
-                <div className="app-container">
-                    <div className="app-header">
-                        this is the left part
-                    </div>
-                    <div className="app-content">
-                        this is the right part
-                    </div>
-                </div>
+                <Home/>
             </div>
         )
     }

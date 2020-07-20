@@ -1,5 +1,5 @@
-@import 'https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap';
-@import 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400;600;700;800;900&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;700;800;900&display=swap';
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -57,6 +57,8 @@ table {
 body {
   font-family: "Nunito Sans", "sans-serif";
   background: #1b65f6;
+  color: #ababab;
+  font-size: 14px;
 }
 
 * {
@@ -77,6 +79,32 @@ body {
   position: relative;
   overflow: hidden;
 }
+.app-container .app-header {
+  color: #fff;
+}
+.app-container .app-header .app-site-info {
+  color: #fff;
+}
+.app-container .app-header .app-site-info h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 60px;
+  font-weight: 800;
+}
+.app-container .app-header .app-site-info .site-title {
+  margin: 10px 0 0 0;
+  padding: 0;
+  font-size: 50px;
+  font-weight: 200;
+  color: #eee;
+  font-family: "Montserrat", sans-serif;
+}
+.app-container .app-header .app-site-info .site-slogan {
+  margin-top: 10px;
+  font-size: 30px;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+}
 @media (min-width: 992px) {
   .app-container .app-header {
     float: left;
@@ -84,6 +112,53 @@ body {
   .app-container .app-content {
     float: right;
   }
+}
+
+.app-card {
+  background-color: #fff;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .app-card {
+    width: 350px;
+  }
+}
+.app-card .app-card-header {
+  background-color: #f6f6f6;
+}
+.app-card .app-card-header .app-card-header-inner {
+  padding: 10px;
+}
+.app-card .app-card-content .app-card-content-inner {
+  padding: 10px;
+}
+
+.app-file-select-zone {
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+.app-file-select-zone label {
+  width: 100%;
+  display: block;
+}
+.app-file-select-zone label input {
+  position: fixed;
+  top: -9999px;
+}
+.app-file-select-zone .app-upload-description {
+  font-size: 12px;
+  display: block;
+}
+.app-file-select-zone .app-upload-icon {
+  width: 80px;
+  height: 40px;
+  border: 1px dashed #ababab;
+  display: inline-block;
+  margin-bottom: 10px;
+  border-radius: 3px;
 }
 
 /*# sourceMappingURL=app.css.map */
