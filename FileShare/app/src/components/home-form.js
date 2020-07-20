@@ -18,7 +18,24 @@ export default class HomeForm extends Component {
                     </div>
                     <div className="app-card-content">
                         <div className="app-card-content-inner">
-                            content inner
+                            <div className="app-form-item">
+                                <label htmlFor="to">SEND TO</label>
+                                <input name="to" placeholder="Email address here" type="text" id="to"></input>
+                            </div>
+                              
+                            <div className="app-form-item">
+                                <label htmlFor="from">FROM</label>
+                                <input name="from" placeholder="Your email address here" type="text" id="to"></input>
+                            </div>
+                                        
+                            <div className="app-form-item">
+                                <label htmlFor="message">MESSAGE</label>
+                                <textarea placeholder="Add an optional message" name="message" id="message"></textarea>
+                            </div>
+
+                            <div className="app-form-actions">
+                                <button className={"app-button primary"} type="submit">Send</button>
+                            </div>
                         </div>
                     </div>
                 </form>

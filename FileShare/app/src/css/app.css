@@ -129,10 +129,10 @@ body {
   background-color: #f6f6f6;
 }
 .app-card .app-card-header .app-card-header-inner {
-  padding: 10px;
+  padding: 20px;
 }
 .app-card .app-card-content .app-card-content-inner {
-  padding: 10px;
+  padding: 20px;
 }
 
 .app-file-select-zone {
@@ -159,6 +159,49 @@ body {
   display: inline-block;
   margin-bottom: 10px;
   border-radius: 3px;
+}
+
+.app-form-item {
+  margin: 0 0 15px 0;
+}
+.app-form-item label {
+  text-transform: uppercase;
+  display: block;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  font-size: 11px;
+}
+.app-form-item input[type=text], .app-form-item textarea {
+  width: 100%;
+  outline: 0 none;
+  padding: 10px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  border-radius: 5px;
+  border: 1px solid #d3d3d3;
+}
+.app-form-item input[type=text]:focus, .app-form-item input[type=text] :active, .app-form-item textarea:focus, .app-form-item textarea :active {
+  outline: 0 none;
+}
+.app-form-item textarea {
+  min-height: 50px;
+}
+
+.app-form-actions .app-button {
+  width: 100%;
+  text-align: center;
+  display: block;
+  border-radius: 5px;
+  border: 1px solid #1b65f6;
+  padding: 7px 15px;
+  font-weight: 600;
+  color: #1b65f6;
+  background: #fff;
+  font-family: "Montserrat", sans-serif;
+}
+.app-form-actions .app-button.primary {
+  color: #fff;
+  background: #1b65f6;
 }
 
 /*# sourceMappingURL=app.css.map */

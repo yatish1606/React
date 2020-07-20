@@ -78,12 +78,12 @@ body {
   .app-card-header{
     background-color: #f6f6f6;
     .app-card-header-inner{
-      padding:10px
+      padding:20px
     }
   }
   .app-card-content{
     .app-card-content-inner{
-      padding:10px
+      padding:20px
     }
   }
 }
@@ -111,5 +111,50 @@ body {
     display: inline-block;
     margin-bottom: 10px;
     border-radius: 3px;
+  }
+}
+
+.app-form-item{
+  margin: 0 0 15px 0;
+  label{
+    text-transform: uppercase;
+    display: block;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    font-size: 11px;
+  }
+  input[type=text],textarea{
+    width: 100%;
+    outline: 0 none;
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size:12px;
+    border-radius: 5px;
+    border: 1px solid #d3d3d3;
+    &:focus,:active{
+      outline: 0 none;
+    }
+  }
+  textarea{
+    min-height: 50px;
+  }
+}
+
+.app-form-actions{
+  .app-button{
+    width: 100%;
+    text-align: center;
+    display: block;
+    border-radius: 5px;
+    border: 1px solid $primary-color;
+    padding: 7px 15px;
+    font-weight: 600;
+    color: $primary-color;
+    background:#fff;
+    font-family: 'Montserrat', sans-serif;
+    &.primary{
+      color: #fff;
+      background: $primary-color;
+    }
   }
 }
