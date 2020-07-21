@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
+import {upload} from '../helpers/upload'
 
 export default class HomeForm extends Component {
 
@@ -138,7 +139,11 @@ export default class HomeForm extends Component {
     _onSubmit(event) {
         event.preventDefault()
         this._formValidation(['from', 'to', 'files'], (isValid) => {
-            console.log('Form valid ? ', isValid)
+            if(isValid){
+                upload(this.state.form, (event) => {
+                    console.log('Upload event', event)
+                })
+            }
         })
     }
 
