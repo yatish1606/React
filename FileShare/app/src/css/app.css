@@ -54,6 +54,10 @@ table {
   border-spacing: 0;
 }
 
+.text-uppercase {
+  text-transform: uppercase;
+}
+
 body {
   font-family: "Nunito Sans", "sans-serif";
   background: #1b65f6;
@@ -78,9 +82,11 @@ body {
 .app-container {
   position: relative;
   overflow: hidden;
+  padding: 20px 0 0 0;
 }
 .app-container .app-header {
   color: #fff;
+  padding-bottom: 30px;
 }
 .app-container .app-header .app-site-info {
   color: #fff;
@@ -108,6 +114,7 @@ body {
 @media (min-width: 992px) {
   .app-container .app-header {
     float: left;
+    padding-top: 100px;
   }
   .app-container .app-content {
     float: right;
@@ -203,6 +210,43 @@ body {
 .app-form-actions .app-button.primary {
   color: #fff;
   background: #1b65f6;
+}
+
+.app-files-selected {
+  background-color: #fff;
+  position: relative;
+  margin: -20px -20px 20px -20px;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 150px;
+}
+.app-files-selected .app-files-selected-item {
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+  padding: 10px 0;
+}
+.app-files-selected .app-files-selected-item .filename {
+  flex-grow: 1;
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  color: #ababab;
+}
+.app-files-selected .app-file-remove {
+  border: 0 none;
+  padding: 3px;
+  background-color: #fff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: #ababab;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+.app-files-selected .app-file-remove:hover {
+  background-color: #F1210F2a;
 }
 
 /*# sourceMappingURL=app.css.map */

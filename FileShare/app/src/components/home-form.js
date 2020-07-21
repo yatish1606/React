@@ -8,6 +8,7 @@ export default class HomeForm extends Component {
 
         this.state = {
             form : {
+                files : [],
                 from:'',
                 to:'',
                 message:''
@@ -22,6 +23,8 @@ export default class HomeForm extends Component {
         this._onChangeText = this._onChangeText.bind(this)
         this._onSubmit = this._onSubmit.bind(this)
         this._formValidation = this._formValidation.bind(this)
+        this._onFileAdded = this._onFileAdded.bind(this)
+        this._onFileRemove = this._onFileRemove.bind(this)
     
     }
 
@@ -89,6 +92,35 @@ export default class HomeForm extends Component {
         })
     }
 
+    _onFileAdded(event) {
+
+        let files = _.get(this.state, 'form.files', [])
+
+        _.each(_.get(event, 'target.files', []), (file) => {
+            files.push(file)
+        })
+
+        this.setState({
+            form: {
+                ...this.state.form,
+                files: files
+            }
+        })
+        console.log(this.state.form)
+    }
+
+    _onFileRemove(index) {
+        let {files} = this.state.form
+
+        files.splice(index, 1)
+        this.setState({
+            form: {
+                ...this.state.form,
+                files: files
+            }
+        })
+    }
+
     _onSubmit(event) {
         event.preventDefault()
         this._formValidation(['from', 'to'], (isValid) => {
@@ -111,17 +143,44 @@ export default class HomeForm extends Component {
     render() {
 
         const {form} = this.state
+        const {files} = form
 
         return (
             <div className="app-card">
                 <form onSubmit={this._onSubmit}>
                     <div className="app-card-header">
                         <div className="app-card-header-inner">
+
+                            {
+                                files.length ? 
+                                <div className="app-files-selected">
+                                    {
+                                        files.map((file, index) => {
+                                            return (
+                                            <div key={index} className="app-files-selected-item">
+                                                <div className="filename">{file.name}</div>
+                                                <div className="file-action"><button onClick={() => this._onFileRemove(index)} type="button" className="app-file-remove">X</button></div>
+                                            </div>
+                                            )
+                                        })
+                                    }   
+                                </div>
+                                : null
+
+                            }
+                            
                             <div className="app-file-select-zone">
                                 <label htmlFor="input-file">
-                                    <input id={'input-file'} type="file" multiple={true}></input>
-                                    <span className="app-upload-icon"/>
-                                    <span className="app-upload-description">Drag and drop your files here</span>
+                                    <input onChange={this._onFileAdded} id={'input-file'} type="file" multiple={true}></input>
+                                    {
+                                        files.length ? 
+                                        <span className={"app-upload-description text-uppercase"}>Add more files</span> 
+                                        :
+                                        <span>
+                                            <span className="app-upload-icon"/>
+                                            <span className="app-upload-description">Drag and drop your files here</span>
+                                        </span>
+                                    }   
                                 </label>
                             </div>            
                         </div>

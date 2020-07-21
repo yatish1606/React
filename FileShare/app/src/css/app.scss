@@ -3,6 +3,10 @@
 @import "reset";
 @import "variable";
 
+.text-uppercase{
+  text-transform: uppercase;
+}
+
 body {
   font-family: 'Nunito Sans', 'sans-serif';
   background: $primary-color;
@@ -25,9 +29,10 @@ body {
 .app-container {
   position: relative;
   overflow: hidden;
-  
+  padding: 20px 0 0 0 ;
   .app-header {
     color: #fff;
+    padding-bottom: 30px;
     .app-site-info{
       color: #fff;
       h1{
@@ -58,6 +63,7 @@ body {
   @media (min-width:$screen-md){
     .app-header{
       float: left;
+      padding-top:100px
     }
     .app-content{
       float: right
@@ -158,4 +164,45 @@ body {
       background: $primary-color;
     }
   }
+}
+
+.app-files-selected{
+  background-color: #fff;
+  position: relative;
+  margin: -20px -20px 20px -20px;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 150px;
+  .app-files-selected-item{
+    display: flex;
+    border-bottom: 1px solid rgba(0,0,0,.09);
+    padding: 10px 0;
+    .filename{
+      flex-grow: 1;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      color: $body-text-color;
+    }
+    .file-action{
+      
+    }
+  }
+  .app-file-remove{
+    border: 0 none;
+    padding:3px;
+    background-color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: $body-text-color;
+    width:20px;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+  }
+  .app-file-remove:hover{
+    background-color:#F1210F2a;
+  }
+  
 }
