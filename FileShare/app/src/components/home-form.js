@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
+import classNames from 'classnames'
 
 export default class HomeForm extends Component {
 
@@ -16,7 +17,8 @@ export default class HomeForm extends Component {
             errors : {
                 to:null,
                 from:null,
-                message:null
+                message:null,
+                files: null
             }
         }
 
@@ -33,7 +35,7 @@ export default class HomeForm extends Component {
         return emailRegex.test(email)
     }
 
-    _formValidation(fields = [], callback) {
+    _formValidation(fields = [], callback = () => {}) {
 
         let {form, errors} = this.state
 
@@ -63,6 +65,14 @@ export default class HomeForm extends Component {
                     errorMessage: 'Email is invalid',
                     isValid: () => {
                         return this._isEmail(form.to)
+                    }
+                }
+            ],
+            files : [
+                {
+                    errorMessage: 'File is required',
+                    isValid: () => {
+                        return form.files.length
                     }
                 }
             ]
@@ -105,6 +115,10 @@ export default class HomeForm extends Component {
                 ...this.state.form,
                 files: files
             }
+        }, () => {
+            this._formValidation(['files'], (isValid) => {
+
+            })
         })
         console.log(this.state.form)
     }
@@ -123,10 +137,9 @@ export default class HomeForm extends Component {
 
     _onSubmit(event) {
         event.preventDefault()
-        this._formValidation(['from', 'to'], (isValid) => {
+        this._formValidation(['from', 'to', 'files'], (isValid) => {
             console.log('Form valid ? ', isValid)
         })
-        console.log(this.state.form)
     }
 
     _onChangeText(event) {
@@ -142,7 +155,7 @@ export default class HomeForm extends Component {
     
     render() {
 
-        const {form} = this.state
+        const {form, errors} = this.state
         const {files} = form
 
         return (
@@ -169,7 +182,7 @@ export default class HomeForm extends Component {
 
                             }
                             
-                            <div className="app-file-select-zone">
+                            <div className={classNames("app-file-select-zone", {'error': _.get(errors,'files')})} >
                                 <label htmlFor="input-file">
                                     <input onChange={this._onFileAdded} id={'input-file'} type="file" multiple={true}></input>
                                     {
@@ -187,14 +200,14 @@ export default class HomeForm extends Component {
                     </div>
                     <div className="app-card-content">
                         <div className="app-card-content-inner">
-                            <div className="app-form-item">
+                            <div className={classNames('app-form-item', {'error': _.get(errors, 'to')})}>
                                 <label htmlFor="to">SEND TO</label>
-                                <input onChange={this._onChangeText} value={form.to} name="to" placeholder="Email address here" type="text" id="to"></input>
+                                <input onChange={this._onChangeText} value={form.to} name="to" placeholder={_.get(errors, 'to') ? _.get(errors, 'to') : "Email address"} type="text" id="to"></input>
                             </div>
                               
-                            <div className="app-form-item">
+                            <div className={classNames('app-form-item', {'error': _.get(errors, 'from')})}>
                                 <label htmlFor="from">FROM</label>
-                                <input onChange={this._onChangeText} value={form.from} name="from" placeholder="Your email address here" type="text" id="to"></input>
+                                <input onChange={this._onChangeText} value={form.from} name="from" placeholder={_.get(errors, 'from') ? _.get(errors, 'from') : "Your email address here"} type="text" id="from"></input>
                             </div>
                                         
                             <div className="app-form-item">

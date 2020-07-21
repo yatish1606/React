@@ -85,8 +85,8 @@ body {
   padding: 20px 0 0 0;
 }
 .app-container .app-header {
-  color: #fff;
   padding-bottom: 30px;
+  text-align: center;
 }
 .app-container .app-header .app-site-info {
   color: #fff;
@@ -105,16 +105,27 @@ body {
   color: #eee;
   font-family: "Montserrat", sans-serif;
 }
+@media (max-width: 768px) {
+  .app-container .app-header .app-site-info .site-title {
+    display: none;
+  }
+}
 .app-container .app-header .app-site-info .site-slogan {
   margin-top: 10px;
   font-size: 30px;
   padding: 0;
   font-family: "Montserrat", sans-serif;
 }
+@media (max-width: 768px) {
+  .app-container .app-header .app-site-info .site-slogan {
+    display: none;
+  }
+}
 @media (min-width: 992px) {
   .app-container .app-header {
     float: left;
     padding-top: 100px;
+    text-align: left;
   }
   .app-container .app-content {
     float: right;
@@ -167,6 +178,9 @@ body {
   margin-bottom: 10px;
   border-radius: 3px;
 }
+.app-file-select-zone.error .app-upload-icon {
+  border-color: #D01A0A;
+}
 
 .app-form-item {
   margin: 0 0 15px 0;
@@ -192,6 +206,9 @@ body {
 }
 .app-form-item textarea {
   min-height: 50px;
+}
+.app-form-item.error input {
+  color: #D01A0A;
 }
 
 .app-form-actions .app-button {
@@ -222,7 +239,7 @@ body {
 }
 .app-files-selected .app-files-selected-item {
   display: flex;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+  border-bottom: 0.6px solid rgba(0, 0, 0, 0.09);
   padding: 10px 0;
 }
 .app-files-selected .app-files-selected-item .filename {
@@ -230,6 +247,7 @@ body {
   font-family: "Montserrat", sans-serif;
   font-size: 11px;
   color: #ababab;
+  margin-top: 5px;
 }
 .app-files-selected .app-file-remove {
   border: 0 none;
@@ -244,9 +262,14 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 10px;
+  margin-bottom: 2px;
 }
 .app-files-selected .app-file-remove:hover {
   background-color: #F1210F2a;
+}
+
+.error {
+  color: #D01A0A;
 }
 
 /*# sourceMappingURL=app.css.map */
