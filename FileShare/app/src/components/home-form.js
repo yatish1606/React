@@ -30,9 +30,9 @@ export default class HomeForm extends Component {
         return emailRegex.test(email)
     }
 
-    _formValidation(fields = []) {
+    _formValidation(fields = [], callback) {
 
-        const {form} = this.state
+        let {form, errors} = this.state
 
         const validations = {
             from : [
@@ -48,13 +48,52 @@ export default class HomeForm extends Component {
                         return this._isEmail(form.from)
                     }
                 }
+            ],
+            to : [
+                {
+                    errorMessage: 'To is required',
+                    isValid: () => {
+                        return form.to.length
+                    }
+                },
+                {
+                    errorMessage: 'Email is invalid',
+                    isValid: () => {
+                        return this._isEmail(form.to)
+                    }
+                }
             ]
         }
 
+        _.each(fields, (field) => {
+            // same as fieldValidations = validations[field]
+            let fieldValidations = _.get(validations, field)
+
+            errors[field] = null
+
+            _.each(fieldValidations, (fieldValidation) => {
+                const isValid = fieldValidation.isValid()
+                if(!isValid) {
+                    errors[field] = fieldValidation.errorMessage
+                }
+            })
+        })
+        this.setState({errors: errors}, () => {
+            let isValid = true
+            _.each(errors, (error) => {
+                if(error !== null){
+                    isValid = false
+                }
+            })
+            return callback(isValid)
+        })
     }
 
     _onSubmit(event) {
         event.preventDefault()
+        this._formValidation(['from', 'to'], (isValid) => {
+            console.log('Form valid ? ', isValid)
+        })
         console.log(this.state.form)
     }
 
