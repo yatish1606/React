@@ -60,7 +60,7 @@ table {
 
 body {
   font-family: "Nunito Sans", "sans-serif";
-  background: #1b65f6;
+  background: #09B1AE;
   color: #ababab;
   font-size: 14px;
 }
@@ -216,17 +216,17 @@ body {
   text-align: center;
   display: block;
   border-radius: 5px;
-  border: 1px solid #1b65f6;
+  border: 1px solid #09B1AE;
   padding: 7px 15px;
   font-weight: 600;
-  color: #1b65f6;
+  color: #09B1AE;
   background: #fff;
   text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
 }
 .app-form-actions .app-button.primary {
   color: #fff;
-  background: #1b65f6;
+  background: #09B1AE;
 }
 
 .app-files-selected {
