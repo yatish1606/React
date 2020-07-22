@@ -4,6 +4,7 @@ import {version} from '../package.json'
 import _ from 'lodash'
 import File from './models/file'
 import {ObjectID} from 'mongodb'
+import Post from './models/post'
 
 class AppRouter {
     constructor(app) {
@@ -38,13 +39,26 @@ class AppRouter {
             })
 
             if(fileModels.length){
+                
                 db.collection('files').insertMany(fileModels, (err,result) => {
                     if(err){
                         return res.status(503).json({ message: 'Unable to upload file'})
                     }
-                    return res.json({
-                        file: fileModels
+                    
+                    let post = new Post(app).initWithObject({
+                        from: _.get(req, 'body.from'),
+                        to : _.get(req, 'body.to'),
+                        message: _.get(req, 'body.message'),
+                        files : result.insertedIds
+                    }).toJSON()
+
+                    db.collection('posts').insertOne(post, (err, result) => {
+                        if(err){
+                            return res.status(503).json({ message: 'Unable to save post'})
+                        }
+                        return res.json(post)
                     })
+
                 })
             } else {
                 return res.status(503).json({ error: 'File upload is required'})

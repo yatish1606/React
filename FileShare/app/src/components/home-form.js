@@ -2,8 +2,11 @@ import React, { Component } from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
 import {upload} from '../helpers/upload'
+import image from '../images/image.png'
+import imageError from '../images/image-error.png'
+import PropTypes from 'prop-types'
 
-export default class HomeForm extends Component {
+class HomeForm extends Component {
 
     constructor(props) {
         super(props)
@@ -20,7 +23,8 @@ export default class HomeForm extends Component {
                 from:null,
                 message:null,
                 files: null
-            }
+            },
+            errorFound:false
         }
 
         this._onChangeText = this._onChangeText.bind(this)
@@ -140,9 +144,15 @@ export default class HomeForm extends Component {
         event.preventDefault()
         this._formValidation(['from', 'to', 'files'], (isValid) => {
             if(isValid){
-                upload(this.state.form, (event) => {
+                const data = this.state.form
+                if(this.props.onUploadBegin){
+                    this.props.onUploadBegin(data)
+                }
+                upload(data, (event) => {
                     console.log('Upload event', event)
                 })
+            } else {
+                this.setState({errorFound:true})
             }
         })
     }
@@ -187,15 +197,17 @@ export default class HomeForm extends Component {
 
                             }
                             
+                            
                             <div className={classNames("app-file-select-zone", {'error': _.get(errors,'files')})} >
                                 <label htmlFor="input-file">
                                     <input onChange={this._onFileAdded} id={'input-file'} type="file" multiple={true}></input>
+                                    
                                     {
                                         files.length ? 
                                         <span className={"app-upload-description text-uppercase"}>Add more files</span> 
                                         :
                                         <span>
-                                            <span className="app-upload-icon"/>
+                                            <span className="app-upload-icon"><img src={this.state.errorFound ? imageError : image} alt='get-image' width={30} height={30}/></span>
                                             <span className="app-upload-description">Drag and drop your files here</span>
                                         </span>
                                     }   
@@ -230,3 +242,9 @@ export default class HomeForm extends Component {
         )
     }
 }
+
+HomeForm.propTypes = {
+    onUploadBegin : PropTypes.func
+}
+
+export default HomeForm

@@ -60,7 +60,7 @@ table {
 
 body {
   font-family: "Nunito Sans", "sans-serif";
-  background: #09B1AE;
+  background: #1b65f6;
   color: #ababab;
   font-size: 14px;
 }
@@ -171,12 +171,21 @@ body {
   display: block;
 }
 .app-file-select-zone .app-upload-icon {
-  width: 80px;
-  height: 40px;
+  width: 85px;
+  height: 46px;
   border: 1px dashed #ababab;
   display: inline-block;
   margin-bottom: 10px;
   border-radius: 3px;
+  align-items: center;
+}
+.app-file-select-zone .app-upload-icon img {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  top: -7px;
+  align-self: center;
+  background-color: #f6f6f6;
 }
 .app-file-select-zone.error .app-upload-icon {
   border-color: #D01A0A;
@@ -216,17 +225,17 @@ body {
   text-align: center;
   display: block;
   border-radius: 5px;
-  border: 1px solid #09B1AE;
+  border: 1px solid #1b65f6;
   padding: 7px 15px;
   font-weight: 600;
-  color: #09B1AE;
+  color: #1b65f6;
   background: #fff;
   text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
 }
 .app-form-actions .app-button.primary {
   color: #fff;
-  background: #09B1AE;
+  background: #1b65f6;
 }
 
 .app-files-selected {
