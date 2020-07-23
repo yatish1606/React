@@ -149,7 +149,9 @@ class HomeForm extends Component {
                     this.props.onUploadBegin(data)
                 }
                 upload(data, (event) => {
-                    console.log('Upload event', event)
+                    if(this.props.onUploadEvent){
+                        this.props.onUploadEvent(event)
+                    }
                 })
             } else {
                 this.setState({errorFound:true})
@@ -244,7 +246,8 @@ class HomeForm extends Component {
 }
 
 HomeForm.propTypes = {
-    onUploadBegin : PropTypes.func
+    onUploadBegin : PropTypes.func,
+    onUploadEvent : PropTypes.func
 }
 
 export default HomeForm
