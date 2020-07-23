@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import fileUploading from '../images/file-uploading.png'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import {betterNumber} from '../helpers'
+import {betterNumber, betterNumberForSpeed} from '../helpers'
 
 class HomeUploading extends Component {
     
@@ -14,7 +14,10 @@ class HomeUploading extends Component {
             percentage:60,
             event:null,
             loaded:0,
-            total:0
+            total:0,
+            startTime: new Date,
+            lastLoaded : 0,
+            speedUpload : 0
         }
     }
 
@@ -32,7 +35,18 @@ class HomeUploading extends Component {
                 const loaded = _.get(event, 'payload.loaded',0)
                 const total = _.get(event, 'payload.total',0)
                 const percentage = loaded !== 0 ? (loaded / total)*100 : 0
-                this.setState({percentage:percentage, loaded:loaded, total:total})
+
+                const currentTime = new Date()
+                const differenceBetweenStartAndCurrentTime = currentTime - this.state.startTime
+
+                if(differenceBetweenStartAndCurrentTime === 0){
+                    differenceBetweenStartAndCurrentTime = 1
+                }
+
+                const speedPerMilliSecond = (loaded - this.state.lastLoaded) / differenceBetweenStartAndCurrentTime
+                const speedPerSecond = speedPerMilliSecond * 1000
+
+                this.setState({percentage:percentage, loaded:loaded, total:total, speedUpload : speedPerSecond, startTime: currentTime, lastLoaded: loaded})
             default:
                 break
         }
@@ -41,7 +55,7 @@ class HomeUploading extends Component {
 
     render() {
         
-        const {percentage, data, total, loaded, } = this.state
+        const {percentage, data, total, loaded, speedUpload} = this.state
         const totalFiles = _.get(data, 'files', []).length
         
         return (
@@ -64,10 +78,10 @@ class HomeUploading extends Component {
                                 </div>
                                 <div className="app-upload-stats">
                                     <div className="app-upload-stats-left">
-                                        {betterNumber(loaded)} Bytes / {betterNumber(total)} Bytes
+                                        {betterNumber(loaded)} / {betterNumber(total)}
                                     </div>
                                     <div className="app-upload-stats-right">
-                                        456 Kbps
+                                        {betterNumberForSpeed(speedUpload)}/s
                                     </div>
                                 </div>
                                 <div className="app-form-actions">
