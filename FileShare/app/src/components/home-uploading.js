@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import fileUploading from '../images/file-uploading.png'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
+import {betterNumber} from '../helpers'
 
 class HomeUploading extends Component {
     
@@ -63,7 +64,7 @@ class HomeUploading extends Component {
                                 </div>
                                 <div className="app-upload-stats">
                                     <div className="app-upload-stats-left">
-                                        {loaded} Bytes / {total} Bytes
+                                        {betterNumber(loaded)} Bytes / {betterNumber(total)} Bytes
                                     </div>
                                     <div className="app-upload-stats-right">
                                         456 Kbps
