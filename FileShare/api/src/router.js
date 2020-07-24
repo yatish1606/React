@@ -96,6 +96,27 @@ class AppRouter {
             }) 
         })
         
+        // View post by ID
+
+        app.get('/api/posts/:id', (req, res, next) => {
+            const postID = _.get(req, 'params.id')
+            let postObjectID = null
+
+            try {
+                postObjectID = new ObjectID(postID)
+            }
+            catch (error) { 
+                return res.status(404).json({error: {message: 'File not found'}})
+            }
+            db.collection('posts').find({_id : postObjectID}).limit(1).toArray((err, results) => {
+                let result = _.get(results, '[0]')
+                if(err || !result){
+                    return res.status(404).json({error: {message: 'File not found'}})  
+                }
+                return res.json(result)
+            })
+        })
+        
         console.log(chalk.green('App Routing is set up'))
     }
 }

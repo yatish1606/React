@@ -28,13 +28,20 @@ export default class Home extends Component {
                 )
             case 'HomeUploadingSent' :
                 return (
-                    <HomeUploadingSent/>
+                    <HomeUploadingSent data={data} onAnotherFileSend={() => {
+                        this.setState({componentName : 'HomeForm'})
+                    }} />
                 )
             default:
                 return (
                     <HomeForm 
                     onUploadEvent={(event) => {
+                        let data = this.state.data
+                        if(_.get(event, 'type') === 'success'){
+                            data = _.get(event, 'payload')
+                        }
                         this.setState({
+                            dSata: data,
                             uploadEvent: event, 
                             componentName: (_.get(event, 'type') === 'success') ? 'HomeUploadingSent' : this.state.componentName
                         })
