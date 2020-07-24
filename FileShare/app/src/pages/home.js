@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import Header from '../components/header'
 import HomeForm from '../components/home-form'
 import HomeUploading from '../components/home-uploading'
+import HomeUploadingSent from '../components/home-upload-sent'
+import _ from 'lodash'
 
 export default class Home extends Component {
 
@@ -24,10 +26,19 @@ export default class Home extends Component {
                 return (
                     <HomeUploading event={uploadEvent} data={data}/>
                 )
+            case 'HomeUploadingSent' :
+                return (
+                    <HomeUploadingSent/>
+                )
             default:
                 return (
                     <HomeForm 
-                    onUploadEvent={(event) => this.setState({uploadEvent: event})}  
+                    onUploadEvent={(event) => {
+                        this.setState({
+                            uploadEvent: event, 
+                            componentName: (_.get(event, 'type') === 'success') ? 'HomeUploadingSent' : this.state.componentName
+                        })
+                    }} 
                     onUploadBegin = {(data) => {
                         this.setState({data: data,componentName : 'HomeUploading'})
                     }}/>
