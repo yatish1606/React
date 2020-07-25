@@ -113,7 +113,8 @@ class AppRouter {
                 if(err || !result){
                     return res.status(404).json({error: {message: 'File not found'}})  
                 }
-                return res.json(result)
+                
+                //return res.json(result)
             })
         })
         
