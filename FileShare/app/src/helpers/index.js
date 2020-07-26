@@ -4,12 +4,14 @@ const KB = 1024
 const MB = KB * KB
 const TB = KB * KB * KB
 
-export const betterNumber = (input) => {
-    if(input > KB){
-        return `${(input/KB).toPrecision(2)} KB`
-    }
+export const betterNumber = (input, round = true) => {
     if(input > MB){
-        return `${(input/MB).toPrecision(2)} MB`
+        return round ? `${_.round(input/MB)} MB` : `${(input/MB)} MB` ;
+    }
+
+    if(input > KB){
+
+        return round ? `${_.round(input/KB)} KB` : `${(input/KB)} KB` ;
     }
     
 }

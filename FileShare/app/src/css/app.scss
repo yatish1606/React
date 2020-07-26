@@ -337,3 +337,85 @@ body {
     margin: 5px 0 0 0;
   }
 }
+
+.app-page-download{
+  .app-card{
+    @media(min-width:$screen-sm) {
+      width:400px;
+    }
+    margin: 0 auto;
+  }
+}
+
+.app-top-header{
+  text-align: center;
+  color: #fff;
+  margin: 15px auto;
+  h1{
+    font-size: 30px;
+    font-weight: 700;
+    margin: 10px auto;
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+.app-download-text {
+  text-align: center;
+  h3{
+    font-size: 20px;
+    margin-top: 20px;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+  }
+  ul {
+    list-style: circle;
+    margin: 20px 0 0 0;
+    padding: 0;
+    li {
+      display: inline-block;
+      position: relative;
+      margin: 0 10px 0 0;
+      padding: 0 0 0 12px;
+      display:inline-block;
+      &:before{
+        position: absolute;
+        content: ' ';
+        width:3px;
+        height: 3px;
+        background:$body-text-color;
+        top:6px;
+        display:block;
+        left:0;
+        border-radius: 50%;
+      }
+      &:first-child{
+        padding: 0;
+        &:before{
+          display:none;
+        }
+      }
+    }
+  }
+}
+
+.app-download-file-list {
+  margin: 30px 0;
+  .app-download-file-list-item{
+    border-bottom: 1px solid $body-text-color-light;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:2px 10px ;
+    .filename{
+      flex-grow: 1;
+      vertical-align: center;
+    }
+  }
+}
+
+.app-download-action{
+  padding:5px 0;
+  button{
+    margin:10px 0;
+  }
+}

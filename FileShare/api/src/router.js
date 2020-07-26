@@ -83,7 +83,7 @@ class AppRouter {
 
                 const filePath = path.join(uploadDirectory,fileName)
 
-                return res.download(filePath, fileName, err => {
+                return res.download(filePath, _.get(result, '[0].originalName'), err => {
                     if(err){
                         return res.json({
                             error:{
