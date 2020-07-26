@@ -41,7 +41,7 @@ export default class Home extends Component {
                             data = _.get(event, 'payload')
                         }
                         this.setState({
-                            dSata: data,
+                            data: data,
                             uploadEvent: event, 
                             componentName: (_.get(event, 'type') === 'success') ? 'HomeUploadingSent' : this.state.componentName
                         })

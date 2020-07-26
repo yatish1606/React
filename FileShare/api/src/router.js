@@ -5,6 +5,7 @@ import _ from 'lodash'
 import File from './models/file'
 import {ObjectID} from 'mongodb'
 import Post from './models/post'
+import { type } from 'os'
 
 class AppRouter {
     constructor(app) {
@@ -95,7 +96,7 @@ class AppRouter {
                 })
             }) 
         })
-        
+
         // View post by ID
 
         app.get('/api/posts/:id', (req, res, next) => {
@@ -117,8 +118,10 @@ class AppRouter {
                 // here result.files is an array of file IDs
                 
                 const fileIDs = _.get(result, 'files', [])
+
+                const fileIDArray = Object.values(fileIDs)
                 // get files from file IDs
-                db.collection('files').find({_id : fileIDs}).toArray((err, files) => {
+                db.collection('files').find({_id : {$in : fileIDArray}}).toArray((err, files) => {
                     // $in will select all records in 'files' collection which have their ID in fileIDs
                     if(!files || err || !files.length){
                         return res.status(404).json({error: {message: 'File not found'}})  
