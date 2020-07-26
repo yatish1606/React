@@ -114,7 +114,19 @@ class AppRouter {
                     return res.status(404).json({error: {message: 'File not found'}})  
                 }
                 
-                //return res.json(result)
+                // here result.files is an array of file IDs
+                
+                const fileIDs = _.get(result, 'files', [])
+                // get files from file IDs
+                db.collection('files').find({_id : fileIDs}).toArray((err, files) => {
+                    // $in will select all records in 'files' collection which have their ID in fileIDs
+                    if(!files || err || !files.length){
+                        return res.status(404).json({error: {message: 'File not found'}})  
+                    }
+                    result.files = files
+                    return res.json(result)
+                })
+                
             })
         })
         
