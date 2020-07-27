@@ -6,6 +6,7 @@ import File from './models/file'
 import {ObjectID} from 'mongodb'
 import Post from './models/post'
 import FileArchiver from './archiver'
+import Email from './email'
 
 class AppRouter {
     constructor(app) {
@@ -57,6 +58,15 @@ class AppRouter {
                         if(err){
                             return res.status(503).json({ message: 'Unable to save post'})
                         }
+
+                        // Send email to reciever of files
+
+                        const sendEmail = new Email(app).sendDownloadLink(post, (err, info) => {
+                            if(err) {
+                                console.log('Error sending email', err)
+                            }
+                        })
+
                         return res.json(post)
                     })
 

@@ -6,13 +6,17 @@ import bodyParser from 'body-parser';
 const chalk = require('chalk')
 import multer from 'multer';
 import path from 'path';
+import nodemailer from 'nodemailer';
 
 import {connect} from './database'
 import AppRouter from './router'
+import {smtpConfig} from './config'
 
 const PORT = 3000;
 const app = express();
 app.server = http.createServer(app);
+
+let email = nodemailer.createTransport(smtpConfig)
 
 const storageDirectory = path.join(__dirname, '..' , 'storage')
 const storageConfig = multer.diskStorage({
@@ -40,6 +44,7 @@ app.use(bodyParser.json({
 app.set('root', __dirname);
 app.set('storageDirectory', storageDirectory)
 app.set('upload', upload)
+app.email = email
 
 connect( (err,db) => {
 
