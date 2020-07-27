@@ -6,6 +6,7 @@ import fileDownload from '../images/file-download.png'
 import {APIURL} from '../config'
 import GetAppRoundedIcon from '@material-ui/icons/GetAppRounded';
 import {betterNumber} from '../helpers'
+import {history} from '../history'
 
 class View extends Component {
     constructor(props){
@@ -46,10 +47,11 @@ class View extends Component {
     render() {
         const {post} = this.state
         const files = _.get(post, 'files',[])
+        const postID = _.get(post, '_id', null)
         return ( 
             <div className='app-page-download'>
                 <div className='app-top-header'>
-                    <h1><SendRoundedIcon style={{fontSize:33, color:'#ffffff', transform:`rotate(-30deg)`,}}/> FileShare</h1>
+                    <h1 onClick={() => history.push('/')}><SendRoundedIcon style={{fontSize:33, color:'#ffffff', transform:`rotate(-30deg)`,}}/> FileShare</h1>
                 </div>
                 <div className={"app-card app-card-uploading-sent"}>     
                         <div className="app-card-content">
@@ -79,7 +81,7 @@ class View extends Component {
                                     }
                                 </div>
                                 <div className='app-download-action app-form-actions'>
-                                    <button className='app-button primary' type='button'>Download All</button>
+                                    <a href={`${APIURL}/posts/${postID}/download`} className='app-button primary' type='button'>Download All</a>
                                     <button type='button' className='app-button'>Share</button>
                                 </div>
                             </div>

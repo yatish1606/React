@@ -5,7 +5,7 @@ import _ from 'lodash'
 import File from './models/file'
 import {ObjectID} from 'mongodb'
 import Post from './models/post'
-import { type } from 'os'
+import FileArchiver from './archiver'
 
 class AppRouter {
     constructor(app) {
@@ -66,7 +66,7 @@ class AppRouter {
             }
         })
 
-        // Download file
+        // Download individual file
         app.get('/api/download/:id', (req, res, next) => {
 
             const fileID = req.params.id
@@ -98,7 +98,6 @@ class AppRouter {
         })
 
         // View post by ID
-
         app.get('/api/posts/:id', (req, res, next) => {
             const postID = _.get(req, 'params.id')
             
@@ -110,8 +109,17 @@ class AppRouter {
             })
         })
 
+        // Donwload all files from a single post
         app.get('/api/posts/:id/download', (req, res, next) => {
-            
+            const postID = req.params.id
+
+            this._getPostByID(postID, (err, result) => {
+                if(err) { 
+                    return res.status(404).json({error : {message : 'File not found'}})
+                }
+                const archiver = new FileArchiver(app, _.get(result, 'files', []), res).downloadFiles()
+                return archiver
+            })
         })
         
         console.log(chalk.green('App Routing is set up'))
