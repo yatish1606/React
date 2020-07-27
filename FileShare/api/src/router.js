@@ -101,39 +101,58 @@ class AppRouter {
 
         app.get('/api/posts/:id', (req, res, next) => {
             const postID = _.get(req, 'params.id')
-            let postObjectID = null
-
-            try {
-                postObjectID = new ObjectID(postID)
-            }
-            catch (error) { 
-                return res.status(404).json({error: {message: 'File not found'}})
-            }
-            db.collection('posts').find({_id : postObjectID}).limit(1).toArray((err, results) => {
-                let result = _.get(results, '[0]')
-                if(err || !result){
-                    return res.status(404).json({error: {message: 'File not found'}})  
+            
+            this._getPostByID(postID, (err, result) => {
+                if(err){
+                    return res.status(404).json({error : {message : 'File not found'}})
                 }
-                
-                // here result.files is an array of file IDs
-                
-                const fileIDs = _.get(result, 'files', [])
-
-                const fileIDArray = Object.values(fileIDs)
-                // get files from file IDs
-                db.collection('files').find({_id : {$in : fileIDArray}}).toArray((err, files) => {
-                    // $in will select all records in 'files' collection which have their ID in fileIDs
-                    if(!files || err || !files.length){
-                        return res.status(404).json({error: {message: 'File not found'}})  
-                    }
-                    result.files = files
-                    return res.json(result)
-                })
-                
+                return res.json(result)
             })
+        })
+
+        app.get('/api/posts/:id/download', (req, res, next) => {
+            
         })
         
         console.log(chalk.green('App Routing is set up'))
+    }
+
+    _getPostByID = (id, callback = () => {}) => {
+    
+        let postObjectID = null
+
+        const db = this.app.get('db')
+
+        try {
+            postObjectID = new ObjectID(id)
+        }
+        catch (error) { 
+            return callback(error, null)
+        }
+
+        db.collection('posts').find({_id : postObjectID}).limit(1).toArray((err, results) => {
+            
+            let result = _.get(results, '[0]')
+            if(err || !result){
+                return callback(err ? err : new Error('File not found')) 
+            }
+            
+            // here result.files is an array of file IDs
+            const fileIDs = _.get(result, 'files', [])
+
+            const fileIDArray = Object.values(fileIDs)
+            // get files from file IDs
+            db.collection('files').find({_id : {$in : fileIDArray}}).toArray((err, files) => {
+                // $in will select all records in 'files' collection which have their ID in fileIDs
+                if(!files || err || !files.length){
+                    return callback(err ? err : new Error('File not found')) 
+                }
+                result.files = files
+
+                return callback(null, result)
+            })
+            
+        })
     }
 }
 export default AppRouter
