@@ -64,6 +64,8 @@ class AppRouter {
                         const sendEmail = new Email(app).sendDownloadLink(post, (err, info) => {
                             if(err) {
                                 console.log('Error sending email', err)
+                            } else {
+                                console.log('Sent email', info)
                             }
                         })
 

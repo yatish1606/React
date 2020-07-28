@@ -20,7 +20,7 @@ export default class Email {
             to: to,
             subject: 'FileShare download invitation',
             text: message, 
-            html: <p>{from} has shared some files with you. Click <a href="{${downloadLink}">here</a> to download</p>
+            html: `<p>${from} has sent to you file. Click <a href="${downloadLink}">here</a> to download.</p><p>Message: ${message}</p>`
         }
 
         email.sendMail(messageOptions, (err, info) => callback(err, info))

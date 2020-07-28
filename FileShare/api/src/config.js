@@ -1,11 +1,11 @@
 export const smtpConfig = {
-    host: 'smtp.ethereal.email',
+    host: 'smtp.sendgrid.net',
     secure : false,
     port : 587,
     auth: {
-        user : '', 
-        pass : ''
+        user : 'apikey', 
+        pass : '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'
     }
 }
 
-export const URL = 'http://localhost:3000'
+export const URL = 'http://localhost:3001'

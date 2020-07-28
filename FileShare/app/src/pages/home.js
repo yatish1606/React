@@ -24,7 +24,7 @@ export default class Home extends Component {
         switch(componentName) {
             case 'HomeUploading':
                 return (
-                    <HomeUploading event={uploadEvent} data={data}/>
+                    <HomeUploading onCancel={() => this.setState({uploadEvent:null, data:null, componentName:'HomeForm'})} event={uploadEvent} data={data}/>
                 )
             case 'HomeUploadingSent' :
                 return (

@@ -85,7 +85,13 @@ class HomeUploading extends Component {
                                     </div>
                                 </div>
                                 <div className="app-form-actions">
-                                    <button className={"app-button app-uploading-button"} type="button">Cancel</button>
+                                    <button onClick = {() => {
+                                        if(this.props.onCancel){
+                                            this.props.onCancel(true)
+                                        }
+                                    }} 
+                                    className={"app-button app-uploading-button"} 
+                                    type="button">Cancel</button>
                                 </div>
                             </div>
                         </div>
@@ -98,6 +104,7 @@ class HomeUploading extends Component {
 
 HomeUploading.propTypes = {
     data: PropTypes.object,
-    event: PropTypes.object
+    event: PropTypes.object,
+    onCancel : PropTypes.func
 }
 export default HomeUploading
