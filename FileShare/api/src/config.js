@@ -4,7 +4,7 @@ export const smtpConfig = {
     port : 587,
     auth: {
         user : 'apikey', 
-        pass : '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'
+        pass : ''
     }
 }
 
