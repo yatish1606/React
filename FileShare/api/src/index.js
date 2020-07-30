@@ -5,12 +5,13 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 const chalk = require('chalk')
 import multer from 'multer';
+import multerS3 from 'multer-s3';
 import path from 'path';
 import nodemailer from 'nodemailer';
 
 import {connect} from './database'
 import AppRouter from './router'
-import {smtpConfig, AWSS3Config} from './config'
+import {smtpConfig, AWSS3Config, S3Region, S3BucketName} from './config'
 import AWS from 'aws-sdk'
 
 const PORT = 3000;
@@ -18,8 +19,7 @@ const app = express();
 app.server = http.createServer(app);
 
 AWS.config.update(AWSS3Config)
-
-AWS.config.region = 'ap-south-1'
+AWS.config.region = S3Region
 
 const s3 = AWS.S3()
 
@@ -34,7 +34,19 @@ const storageConfig = multer.diskStorage({
       cb(null, Date.now() + path.extname(file.originalname))
     }
 })
-const upload = multer({storage: storageConfig})
+//const upload = multer({storage: storageConfig})
+const upload = multer({
+    storage: multerS3({
+      s3: s3,
+      bucket: S3BucketName,
+      metadata: function (req, file, cb) {
+        cb(null, {fieldName: file.fieldname});
+      },
+      key: function (req, file, cb) {
+        cb(null, Date.now().toString())
+      }
+    })
+})
 
 
 app.use(morgan('dev'));
@@ -50,7 +62,7 @@ app.use(bodyParser.json({
 
 app.set('root', __dirname);
 app.set('storageDirectory', storageDirectory)
-app.set('upload', upload)
+app.upload = upload
 app.email = email
 
 connect( (err,db) => {
