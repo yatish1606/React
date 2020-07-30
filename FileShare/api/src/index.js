@@ -10,11 +10,18 @@ import nodemailer from 'nodemailer';
 
 import {connect} from './database'
 import AppRouter from './router'
-import {smtpConfig} from './config'
+import {smtpConfig, AWSS3Config} from './config'
+import AWS from 'aws-sdk'
 
 const PORT = 3000;
 const app = express();
 app.server = http.createServer(app);
+
+AWS.config.update(AWSS3Config)
+
+AWS.config.region = 'ap-south-1'
+
+const s3 = AWS.S3()
 
 let email = nodemailer.createTransport(smtpConfig)
 
