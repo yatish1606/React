@@ -21,7 +21,7 @@ app.server = http.createServer(app);
 AWS.config.update(AWSS3Config)
 AWS.config.region = S3Region
 
-const s3 = AWS.S3()
+const s3 = new AWS.S3()
 
 let email = nodemailer.createTransport(smtpConfig)
 
@@ -43,7 +43,8 @@ const upload = multer({
         cb(null, {fieldName: file.fieldname});
       },
       key: function (req, file, cb) {
-        cb(null, Date.now().toString())
+        const fileName = `${Date.now().toString()}-${file.originalname}`
+        cb(null, fileName)
       }
     })
 })

@@ -33,6 +33,7 @@ class AppRouter {
             console.log(chalk.white('Uploaded File recieved : ', req.files))
 
             const files = _.get(req, 'files', [])
+            console.log('files from s3 bucket', files)
             let fileModels = []
 
             _.each(files, (fileObject) => {
