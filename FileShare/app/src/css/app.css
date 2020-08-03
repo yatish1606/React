@@ -60,13 +60,13 @@ table {
 
 body {
   font-family: "Nunito Sans", "sans-serif";
-  background: #1b65f6;
+  background: gold;
   color: #93969D;
   font-size: 14px;
 }
 
 a {
-  color: #1b65f6;
+  color: gold;
   text-decoration: none;
 }
 
@@ -212,7 +212,7 @@ a {
   margin: 0 0 8px 0;
   font-size: 11px;
 }
-.app-form-item input[type=text], .app-form-item textarea {
+.app-form-item input[type=text], .app-form-item input[type=email], .app-form-item input[type=password], .app-form-item textarea {
   width: 100%;
   outline: 0 none;
   padding: 10px;
@@ -221,7 +221,7 @@ a {
   border-radius: 5px;
   border: 1px solid #d3d3d3;
 }
-.app-form-item input[type=text]:focus, .app-form-item input[type=text] :active, .app-form-item textarea:focus, .app-form-item textarea :active {
+.app-form-item input[type=text]:focus, .app-form-item input[type=text] :active, .app-form-item input[type=email]:focus, .app-form-item input[type=email] :active, .app-form-item input[type=password]:focus, .app-form-item input[type=password] :active, .app-form-item textarea:focus, .app-form-item textarea :active {
   outline: 0 none;
 }
 .app-form-item textarea {
@@ -236,17 +236,17 @@ a {
   text-align: center;
   display: block;
   border-radius: 5px;
-  border: 1px solid #1b65f6;
+  border: 1px solid gold;
   padding: 7px 15px;
   font-weight: 600;
-  color: #1b65f6;
+  color: gold;
   background: #fff;
   text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
 }
 .app-form-actions .app-button.primary {
   color: #fff;
-  background: #1b65f6;
+  background: gold;
 }
 
 .app-files-selected {
@@ -329,7 +329,7 @@ a {
   height: 12px;
   line-height: 15px;
   background-color: #EDF3FF;
-  border: 1px solid #1b65f6;
+  border: 1px solid gold;
   margin: 5px 0 5px 0;
   border-radius: 6px;
   position: relative;
@@ -338,7 +338,7 @@ a {
 .app-progress .app-progress-bar {
   height: 12px;
   line-height: 12px;
-  background-color: #1b65f6;
+  background-color: gold;
   position: absolute;
   top: 0;
   left: 0;
@@ -459,6 +459,104 @@ a {
 }
 .app-download-action button {
   margin: 10px 0;
+}
+
+.app-top-bar {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: 50px;
+  background: red;
+  z-index: 10;
+}
+.app-top-bar .app-top-bar-inner {
+  display: flex;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.app-top-bar .app-top-bar-inner .app-top-bar-left {
+  flex-grow: 1;
+}
+.app-top-bar .app-top-bar-inner .app-top-bar-right {
+  text-align: right;
+}
+.app-top-bar .app-top-bar-inner .app-top-bar-right .app-top-bar-right-inner {
+  display: flex;
+}
+.app-top-bar .app-top-bar-inner .site-name {
+  font-size: 30px;
+  line-height: 50px;
+}
+.app-top-bar .app-top-bar-inner .user-profile-picture {
+  margin-top: 10px;
+}
+.app-top-bar .app-top-bar-inner .user-profile-picture img {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  overflow: hidden;
+  background: white;
+  padding-top: 2px;
+}
+.app-top-bar .app-top-bar-inner .user-profile-menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.app-top-bar .app-top-bar-inner .user-profile-menu li {
+  line-height: 50px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  color: #fff;
+  font-weight: 500;
+  padding: 0 10px;
+}
+
+.app-login-form {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  min-width: 400px;
+  background: white;
+  z-index: 1001;
+}
+.app-login-form .app-login-form-inner {
+  position: relative;
+  padding: 30px;
+}
+.app-login-form h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 25px;
+  color: #2a2b2b;
+  font-weight: 700;
+  display: block;
+  text-align: center;
+  margin: 10px 0;
+  padding-top: 50px;
+}
+.app-login-form .app-form-actions .app-form-description {
+  text-align: center;
+}
+.app-login-form .app-form-actions button {
+  margin: 10px 0;
+  left: 10px;
+  top: 10px;
+}
+.app-login-form .app-dismiss-button {
+  position: absolute;
+  background: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+.app-login-form .app-dismiss-button .app-dismiss-button:hover {
+  background: #f6f6f6;
+}
+.app-login-form .user-signin-button {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=app.css.map */

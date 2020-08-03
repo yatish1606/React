@@ -163,7 +163,7 @@ a {
     margin: 0 0 8px 0;
     font-size: 11px;
   }
-  input[type=text],textarea{
+  input[type="text"], input[type='email'], input[type='password'], textarea{
     width: 100%;
     outline: 0 none;
     padding: 10px;
@@ -422,5 +422,106 @@ a {
   padding:5px 0;
   button{
     margin:10px 0;
+  }
+}
+
+.app-top-bar {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: $header-height;
+  background:red;
+  z-index: 10;
+  .app-top-bar-inner {
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto;
+    .app-top-bar-left {
+      flex-grow: 1;
+    }
+    .app-top-bar-right {
+      text-align: right;
+      .app-top-bar-right-inner {
+        display: flex;
+      }
+    }
+    .site-name {
+      font-size:30px;
+      line-height : $header-height
+    }
+    .user-profile-picture {
+      img {
+        width:30px;
+        height:30px;
+        border-radius: 15px;
+        overflow: hidden;
+        background:white;
+        padding-top: 2px;
+      }
+      margin-top: 10px;
+    }
+    .user-profile-menu {
+      margin: 0 ;
+      padding : 0;
+      list-style: none;
+      
+      li {
+        line-height: $header-height;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 15px;
+        color : #fff;
+        font-weight: 500;
+        padding: 0 10px;
+      }
+    }
+  }
+}
+
+.app-login-form {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  min-width: 400px;
+  background:white;
+  z-index:1001;
+  .app-login-form-inner {
+    position: relative;
+    padding:30px;
+  }
+  h2{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    color:#2a2b2b;
+    font-weight: 700;
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+    padding-top: 50px;
+  }
+  .app-form-actions {
+    .app-form-description {
+      text-align: center;
+    }
+    button {
+      margin : 10px 0;
+      left: 10px;
+      top:10px
+    }
+  }
+  .app-dismiss-button {
+    position: absolute;
+    background:none;
+    border:none;
+    width:40px;
+    height: 40px;
+    border-radius:20px;
+    .app-dismiss-button:hover {
+      background:#f6f6f6
+    }
+  }
+  .user-signin-button {
+    cursor: pointer;
   }
 }
