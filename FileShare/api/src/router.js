@@ -7,6 +7,7 @@ import {ObjectID} from 'mongodb'
 import Post from './models/post'
 import FileArchiver from './archiver'
 import Email from './email'
+import S3 from './s3'
 
 class AppRouter {
     constructor(app) {
@@ -93,20 +94,27 @@ class AppRouter {
                 if(err || !fileName){
                     return res.status(404).json({ error : {message:'File not found'}})
                 }
+                const file = _.get(result, '[0]')
+                const downloader = new S3(app, res)
+                
+                //return downloader.downloadFile(file)
 
-                const filePath = path.join(uploadDirectory,fileName)
+                const downloadURL = downloader.getDownloadURL(file)
+                return res.redirect(downloadURL)
 
-                return res.download(filePath, _.get(result, '[0].originalName'), err => {
-                    if(err){
-                        return res.json({
-                            error:{
-                                message:'File not found'
-                            }
-                        })
-                    } else {
-                        console.log(chalk.green('File is successfully downloaded'))
-                    }
-                })
+                // const filePath = path.join(uploadDirectory,fileName)
+
+                // return res.download(filePath, _.get(result, '[0].originalName'), err => {
+                //     if(err){
+                //         return res.json({
+                //             error:{
+                //                 message:'File not found'
+                //             }
+                //         })
+                //     } else {
+                //         console.log(chalk.green('File is successfully downloaded'))
+                //     }
+                // })
             }) 
         })
 
