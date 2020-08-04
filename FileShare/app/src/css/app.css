@@ -248,6 +248,11 @@ a {
   color: #fff;
   background: gold;
 }
+.app-form-actions .app-button.app-button-link {
+  color: gold;
+  border: none;
+  background: none;
+}
 
 .app-files-selected {
   background-color: #fff;
