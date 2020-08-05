@@ -227,7 +227,7 @@ a {
 .app-form-item textarea {
   min-height: 50px;
 }
-.app-form-item.error input[type=text] {
+.app-form-item.error input[type=text], .app-form-item.error input[type=email], .app-form-item.error input[type=password] {
   color: #D01A0A;
 }
 

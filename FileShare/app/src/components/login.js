@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
+import classnames from 'classnames'
+import _ from 'lodash'
 
 export default class LoginForm extends Component {
 
@@ -13,15 +15,49 @@ export default class LoginForm extends Component {
                 email:'',
                 password:'',
                 confirmPassword:'',
+            },
+            error : {
+                name: null,
+                email: null,
+                password: null,
+                confirmPassword: null
             }
         }
 
         this._onSubmit = this._onSubmit.bind(this)
         this._onTextFieldChange = this._onTextFieldChange.bind(this)
+        this._formValidation = this._formValidation.bind(this)
+    }
+
+    _formValidation(fieldsToValidate = [],callback = () => {}) {
+        const {isLogin, user} = this.state
+
+        const allFields = [
+            name : {
+                message:'Name is required',
+                func: () => {
+                    const value = _.trim(_.get(user, 'name', ""))
+                    if(value){
+                        return true
+                    }
+                    return false
+                }
+            },
+            
+        ]
+
+        _.each(fieldsToValidate, field => {
+            const fieldToValidate = _.get(allFields, field)
+        })
+        const isValid = true
+        return callback(isValid)
     }
 
     _onSubmit = (event) => {
         event.preventDefault()
+        this._formValidation(isValid => {
+            console.log("Valid ? ", isValid)
+        })
         const {isLogin, user} = this.state
         console.log(user)
 
@@ -35,7 +71,7 @@ export default class LoginForm extends Component {
 
     render() {
 
-        const {isLogin, user} = this.state
+        const {isLogin, user, error} = this.state
         const title = isLogin ? 'Sign In' : 'Sign Up'
         return (
             <div className="app-login-form">
@@ -50,24 +86,24 @@ export default class LoginForm extends Component {
                         {
                             !isLogin ?
                             <div>
-                                <div className="app-form-item">
+                                <div className={classnames('app-form-item', {'error' : _.get(error, 'name')})}>
                                     <label htmlFor="name-id">Name</label>
                                     <input value={user.name} onChange={this._onTextFieldChange} placeholder="Enter your name" type="text" id="name-id" name="name" />
                                 </div>
                             </div> : null
                         }
-                        <div className="app-form-item">
+                        <div className={classnames('app-form-item', {'error' : _.get(error, 'email')})}>
                             <label htmlFor="email-id">Email</label>
                             <input value={user.email} onChange={this._onTextFieldChange} placeholder="Enter email ID" type="email" id="email-id" name="email" />
                         </div>
-                        <div className="app-form-item">
+                        <div className={classnames('app-form-item', {'error' : _.get(error, 'password')})}>
                             <label htmlFor="password-id">Password</label>
                             <input value={user.password} onChange={this._onTextFieldChange} placeholder="Enter password" type="password" id="password-id" name="password" />
                         </div>
 
                         {
                             !isLogin ? <div>
-                                <div className="app-form-item">
+                                <div className={classnames('app-form-item', {'error' : _.get(error, 'confirmPassword')})}>
                                     <label htmlFor="confirm-password-id">Password</label>
                                     <input value={user.confirmPassword} onChange={this._onTextFieldChange} placeholder="Enter password again" type="password" id="confirm-password-id" name="confirmPassword" />
                                 </div>
