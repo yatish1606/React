@@ -5,6 +5,7 @@ import {upload} from '../helpers/upload'
 import image from '../images/image.png'
 import imageError from '../images/image-error.png'
 import PropTypes from 'prop-types'
+import {_isEmail} from '../helpers/isEmail'
 
 class HomeForm extends Component {
 
@@ -35,11 +36,7 @@ class HomeForm extends Component {
     
     }
 
-    _isEmail(email) {
-        const emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-        return emailRegex.test(email)
-    }
-
+    
     _formValidation(fields = [], callback = () => {}) {
 
         let {form, errors} = this.state

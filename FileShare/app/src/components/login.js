@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 import classnames from 'classnames'
 import _ from 'lodash'
+import {_isEmail} from '../helpers/isEmail'
+
 
 export default class LoginForm extends Component {
 
@@ -32,7 +34,7 @@ export default class LoginForm extends Component {
     _formValidation(fieldsToValidate = [],callback = () => {}) {
         const {isLogin, user} = this.state
 
-        const allFields = [
+        const allFields = {
             name : {
                 message:'Name is required',
                 func: () => {
@@ -43,24 +45,79 @@ export default class LoginForm extends Component {
                     return false
                 }
             },
-            
-        ]
+            email : {
+                message : 'Invalid email', 
+                func: () => {
+                    const value = _.get(user, 'email')
+                    if(value.length && _isEmail(value)){
+                        return true
+                    }
+                    return false
+                }
+            },
+            password : {
+                message: 'Password is required (more than 3 characters)',
+                func : () => {
+                    const value = _.get(user, 'password')
+                    if(value && value.length > 3){
+                        return true
+                    }
+                    return false
+                }
+            },
+            confirmPassword : {
+                message: 'Password does not match',
+                func: () => {
+                    const password = _.get(user, 'password')
+                    const confirmPassword = _.get(user, 'confirmPassword')
+                    if(password === confirmPassword){
+                        return true
+                    }
+                    return false
+                }
+            }
+        }
 
+        const errors = this.state.error
         _.each(fieldsToValidate, field => {
-            const fieldToValidate = _.get(allFields, field)
+            const fieldValidate = _.get(allFields, field)
+            if(fieldValidate) {
+                errors[field] = null
+                if(fieldValidate.func() === false) {
+                    errors[field] = _.get(fieldValidate, 'message')
+                }
+            }
         })
-        const isValid = true
-        return callback(isValid)
+
+        let isValid = true
+        
+        this.setState({
+            error : errors }, 
+            () => {
+            _.each(errors, err => {
+                if(err) {
+                    isValid = false
+                }
+            })
+            return callback(isValid)
+        })
+        
     }
 
     _onSubmit = (event) => {
+        
         event.preventDefault()
-        this._formValidation(isValid => {
-            console.log("Valid ? ", isValid)
-        })
+        
         const {isLogin, user} = this.state
-        console.log(user)
-
+        
+        const fieldsToValidate = isLogin ? ['email'] : ['name', 'email', 'password', 'confirmPassword']
+        
+        this._formValidation(fieldsToValidate, isValid => {
+            console.log("Valid ? ", isValid)
+            if(isValid) {
+                // add user in database
+            }
+        })
     }
 
     _onTextFieldChange = (event) => {
@@ -73,6 +130,7 @@ export default class LoginForm extends Component {
 
         const {isLogin, user, error} = this.state
         const title = isLogin ? 'Sign In' : 'Sign Up'
+        
         return (
             <div className="app-login-form">
                 <div className="app-login-form-inner">
