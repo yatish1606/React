@@ -147,16 +147,14 @@ class AppRouter {
         app.post('/api/users', (req, res, next) => {
 
             const body = _.get(req, 'body')
-            console.log(body)
 
             const user = new User(app)
                 .initWithObject(body)
                 .createUser((err, newUser) => {
-                    console.log("new user is created with ", err, newUser)
-
+                    console.log('Creating new user with', err, newUser)
                     if(err){
                         return res.status(503).json({
-                            error : {message : 'Could not create new user'}
+                            error: {message: err}
                         })
                     }
                     return res.status(200).json(newUser)

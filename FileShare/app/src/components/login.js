@@ -119,10 +119,9 @@ export default class LoginForm extends Component {
                 if(isLogin){
 
                 } else {
-                    console.log(user)
                     createUserAccount(user)
                         .then(result => {
-                            console.log(result)
+                            console.log('New account created',result)
                         })
                         .catch(error => console.log(error))
                 }
