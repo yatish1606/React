@@ -3,6 +3,7 @@ import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 import classnames from 'classnames'
 import _ from 'lodash'
 import {_isEmail} from '../helpers/isEmail'
+import {createUserAccount} from '../helpers/user'
 
 
 export default class LoginForm extends Component {
@@ -115,7 +116,17 @@ export default class LoginForm extends Component {
         this._formValidation(fieldsToValidate, isValid => {
             console.log("Valid ? ", isValid)
             if(isValid) {
-                // add user in database
+                if(isLogin){
+
+                } else {
+                    console.log(user)
+                    createUserAccount(user)
+                        .then(result => {
+                            console.log(result)
+                        })
+                        .catch(error => console.log(error))
+                }
+                
             }
         })
     }

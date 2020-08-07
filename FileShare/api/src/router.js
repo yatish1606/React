@@ -8,6 +8,7 @@ import Post from './models/post'
 import FileArchiver from './archiver'
 import Email from './email'
 import S3 from './s3'
+import User from './models/user.js'
 
 class AppRouter {
     constructor(app) {
@@ -141,6 +142,25 @@ class AppRouter {
                 const archiver = new FileArchiver(app, _.get(result, 'files', []), res).downloadFiles()
                 return archiver
             })
+        })
+
+        app.post('/api/users', (req, res, next) => {
+
+            const body = _.get(req, 'body')
+            console.log(body)
+
+            const user = new User(app)
+                .initWithObject(body)
+                .createUser((err, newUser) => {
+                    console.log("new user is created with ", err, newUser)
+
+                    if(err){
+                        return res.status(503).json({
+                            error : {message : 'Could not create new user'}
+                        })
+                    }
+                    return res.status(200).json(newUser)
+                })
         })
         
         console.log(chalk.green('App Routing is set up'))
