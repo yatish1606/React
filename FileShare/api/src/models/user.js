@@ -18,6 +18,7 @@ export default class User {
 
         this.findUserByEmailID = this.findUserByEmailID.bind(this)
         this.hashPasswordSync = this.hashPasswordSync.bind(this)
+        this.loginUser = this.loginUser.bind(this)
     }
 
     initWithObject(obj) {
@@ -32,13 +33,40 @@ export default class User {
 
         const db = this.app.db
         db.collection('users').find({email : email}).limit(1).toArray((err, user) => {
-            console.log('Found users')
             return callback(err, user)
         })
     }
 
     hashPasswordSync(password) {
         return bcrypt.hashSync(password, saltRounds)
+    }
+
+    loginUser(email, password, callback = () => {}) {
+        let error = null
+        let user = {email:'vjfiv', password : 'akcndocn'}
+        
+        if(!email || !password){
+            error = {message : 'Email and password is required'}
+            return callback(error, null)
+        }
+
+        this.findUserByEmailID(email, (err, user) => {
+            
+            // if(user && err === null){
+            //     console.log('passowrd same', bcrypt.compareSync(password, user[0].password))
+            //     callback(null, user)
+            // }
+            if(err || !user){
+                error = {message : 'Error while logging in'}
+                return callback(error, null)
+            }
+
+            if(user && (err === null) && bcrypt.compareSync(password, user[0].password)){
+                return callback(null, user)
+            }
+
+
+        })
     }
 
     validate(cb = () => {}) {

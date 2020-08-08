@@ -160,6 +160,18 @@ class AppRouter {
                     return res.status(200).json(newUser)
                 })
         })
+
+        app.post('/api/users/login', (req, res) => {
+            const body = _.get(req, 'body')
+
+            const user = new User(app).loginUser(body.email, body.password, (err, user) => {
+                console.log(err, user)
+                return res.status(200).json({
+                    loginSuccess : err ? false : true
+                })
+            })
+            
+        })
         
         console.log(chalk.green('App Routing is set up'))
     }
