@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import bcrypt from 'bcrypt'
+import Auth from './auth'
 
 const saltRounds = 10
 
@@ -43,7 +44,8 @@ export default class User {
 
     loginUser(email, password, callback = () => {}) {
         let error = null
-        let user = {email:'vjfiv', password : 'akcndocn'}
+        let user = {email:null, password : null}
+        const app = this.app
         
         if(!email || !password){
             error = {message : 'Email and password is required'}
@@ -52,17 +54,25 @@ export default class User {
 
         this.findUserByEmailID(email, (err, user) => {
             
-            // if(user && err === null){
-            //     console.log('passowrd same', bcrypt.compareSync(password, user[0].password))
-            //     callback(null, user)
-            // }
             if(err || !user){
                 error = {message : 'Error while logging in'}
                 return callback(error, null)
             }
 
             if(user && (err === null) && bcrypt.compareSync(password, user[0].password)){
-                return callback(null, user)
+                
+                new Auth(app).createNewUserToken(user[0], null, (err, token) => {
+                    if(err){
+                        error = {message : 'Error while logging in'}
+                        return callback(error, null)
+                    }
+                    console.log('New user token created,' , err, token)
+                    return callback(null, user)
+                })
+                             
+            } else {
+                error = {message : 'Incorrect password'}
+                return callback(error, null)
             }
 
 
