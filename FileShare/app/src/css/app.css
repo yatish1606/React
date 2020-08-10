@@ -564,4 +564,19 @@ a {
   cursor: pointer;
 }
 
+.app-message {
+  width: 100%;
+  margin: 10px auto;
+}
+.app-message p {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #0BB0213a;
+  color: #0BB021;
+}
+.app-message p.error {
+  background-color: #F0260C3a;
+  color: #F0260C;
+}
+
 /*# sourceMappingURL=app.css.map */

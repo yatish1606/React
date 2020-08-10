@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import bcrypt from 'bcrypt'
 import Auth from './auth'
+import {ObjectID} from 'mongodb'
 
 const saltRounds = 10
 
@@ -20,6 +21,7 @@ export default class User {
         this.findUserByEmailID = this.findUserByEmailID.bind(this)
         this.hashPasswordSync = this.hashPasswordSync.bind(this)
         this.loginUser = this.loginUser.bind(this)
+        this.findUserByID = this.findUserByID.bind(this)
     }
 
     initWithObject(obj) {
@@ -35,6 +37,18 @@ export default class User {
         const db = this.app.db
         db.collection('users').find({email : email}).limit(1).toArray((err, user) => {
             return callback(err, user)
+        })
+    }
+
+    findUserByID(id = null, callback = () => {}) {
+        
+        const db = this.app.db
+        db.collection('users').find({_id : new ObjectID(id)}).limit(1).toArray((err, user) => {
+            if(err == null && user[0]){
+                return callback(null, user[0])
+            }
+            const error = {message:'User not found'}
+            return callback(error, null)
         })
     }
 
@@ -66,8 +80,9 @@ export default class User {
                         error = {message : 'Error while logging in'}
                         return callback(error, null)
                     }
-                    console.log('New user token created,' , err, token)
-                    return callback(null, user)
+                    delete user.password
+                    token.user = user
+                    return callback(null, token)
                 })
                              
             } else {

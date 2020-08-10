@@ -3,7 +3,7 @@ import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 import classnames from 'classnames'
 import _ from 'lodash'
 import {_isEmail} from '../helpers/isEmail'
-import {createUserAccount} from '../helpers/user'
+import {createUserAccount, loginUser} from '../helpers/user'
 
 
 export default class LoginForm extends Component {
@@ -12,6 +12,7 @@ export default class LoginForm extends Component {
         super(props)
 
         this.state = {
+            message : null,
             isLogin : true,
             user : {
                 name:'',
@@ -114,10 +115,27 @@ export default class LoginForm extends Component {
         const fieldsToValidate = isLogin ? ['email'] : ['name', 'email', 'password', 'confirmPassword']
         
         this._formValidation(fieldsToValidate, isValid => {
+
             console.log("Valid ? ", isValid)
+
             if(isValid) {
                 if(isLogin){
-
+                    const {email, password} = user
+                    loginUser(email, password)
+                        .then(response => {
+                            this.setState({ message : {
+                                type: "success",
+                                text : 'Login successful'
+                            }})
+                        })
+                        .catch(err => {
+                            this.setState({ message : {
+                                type: "error",
+                                text : 'Error while logging in'
+                            }})
+                            console.log(err)
+                        })
+                
                 } else {
                     createUserAccount(user)
                         .then(result => {
@@ -138,7 +156,7 @@ export default class LoginForm extends Component {
 
     render() {
 
-        const {isLogin, user, error} = this.state
+        const {isLogin, user, error, message} = this.state
         const title = isLogin ? 'Sign In' : 'Sign Up'
         
         return (
@@ -151,6 +169,11 @@ export default class LoginForm extends Component {
                     }} className="app-dismiss-button"><ArrowBackRoundedIcon fontSize="20"/></button>
                     <h2>{title}</h2>
                     <form onSubmit={this._onSubmit}>
+                        {
+                            message ? <div className="app-message">
+                                <p className={message.type}>{message.text}</p>
+                            </div> : null
+                        }
                         {
                             !isLogin ?
                             <div>

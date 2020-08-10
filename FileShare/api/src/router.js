@@ -9,6 +9,7 @@ import FileArchiver from './archiver'
 import Email from './email'
 import S3 from './s3'
 import User from './models/user.js'
+import Auth from './models/auth.js'
 
 class AppRouter {
     constructor(app) {
@@ -163,14 +164,36 @@ class AppRouter {
 
         app.post('/api/users/login', (req, res) => {
             const body = _.get(req, 'body')
-
-            const user = new User(app).loginUser(body.email, body.password, (err, user) => {
-                console.log(err, user)
-                return res.status(200).json({
-                    loginSuccess : err ? false : true
-                })
-            })
             
+            new User(app).loginUser(body.email, body.password, (err, token) => {
+                console.log(err, token)
+                if(err){
+                    return res.status(401).json({ error : {message : 'Error in logging in'}})
+                }
+                return res.status(200).json(token)
+            })  
+        })
+
+        app.get('/api/users/:id', (req, res, next) => {
+            const userID = req.params.id
+
+            new Auth(app).checkUserAuthenticationStatus(req, (isLoggedIn) => {
+                if(!isLoggedIn) {
+                    return res.status(401).json({error: {message:'Unauthorized login'}})
+                }
+
+                new User(app).findUserByID(userID, (err, user) => {
+                    if(err){
+                        return res.status(404).json({error : {message : 'User not found'}})
+                    }
+                    delete user.password
+                    return res.status(200).json(user)
+                })
+                
+                
+            })
+
+
         })
         
         console.log(chalk.green('App Routing is set up'))
