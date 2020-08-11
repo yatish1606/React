@@ -5,6 +5,8 @@ import _ from 'lodash'
 import {_isEmail} from '../helpers/isEmail'
 import {createUserAccount, loginUser} from '../helpers/user'
 import { GoogleLogin } from 'react-google-login';
+import {googleClientID} from '../config'
+
 
 const responseGoogle = (response) => {
     console.log(response);
@@ -17,6 +19,7 @@ export default class LoginForm extends Component {
 
         this.state = {
             message : null,
+            isSignedIn: true,
             isLogin : true,
             user : {
                 name:'',
@@ -225,11 +228,12 @@ export default class LoginForm extends Component {
                     </form>
 
                     <GoogleLogin
-                        clientId="250368300936-mlp6fd09vhqeu8dnir9o0hlm7gs923ak.apps.googleusercontent.com"
+                        clientId={googleClientID}
                         buttonText="Login"
                         onSuccess={responseGoogle}
                         onFailure={responseGoogle}
                         cookiePolicy={'single_host_origin'}
+                        isSignedIn={true}
                     />
                 </div>
             </div>
