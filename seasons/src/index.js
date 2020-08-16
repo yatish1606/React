@@ -8,8 +8,10 @@ const App = () => {
 
     window.navigator.geolocation.getCurrentPosition(
         onSuccess => setLatitude(onSuccess.coords.latitude),
-        onError => setLatitude(null)
-    )
+        onError => {
+            setLatitude(null)
+            console.log(onError)
+        })
 
     return (
         <div>Hi there, your latutde is {latitude}</div>
