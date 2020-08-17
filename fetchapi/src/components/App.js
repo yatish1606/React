@@ -1,19 +1,29 @@
 import React from 'react';
-import axios from 'axios'
-import {UNSPLASH_AUTH_KEY} from '../config'
+import axiosClient from '../api/unsplash'
 import SearchBar from './SearchBar'
+import ImageList from './ImageList'
 
 class App extends React.Component {
 
+    constructor(props) {
+        super(props)
 
-    onSearchQuery = (searchQuery) => {
-        let URL = 'https://api.unsplash.com/search/photos'
-        axios.get(URL, {
+        this.state = {
+            imagesData : []
+        }
+    }
+
+    onSearchQuery = async (searchQuery) => {
+
+        let URL = '/search/photos'
+
+        const response = await axiosClient.get(URL, {
             params : {query : searchQuery},
-            headers : {
-                Authorization: UNSPLASH_AUTH_KEY
-            }
-        }).then(response => console.log(response))
+        })
+        
+        this.setState({imagesData: response.data.results})
+        this.forceUpdate()
+        
     }
 
     render() {
@@ -22,6 +32,7 @@ class App extends React.Component {
                 <SearchBar
                     onSearchQuery={this.onSearchQuery}
                 />
+                <ImageList images={this.state.imagesData}/>
             </div>
         )
     }
