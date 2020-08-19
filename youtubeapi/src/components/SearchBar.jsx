@@ -15,9 +15,9 @@ class SearchBar extends React.Component {
     }
 
     handleFormSubmit = event => {
+        
         event.preventDefault()
-        console.log(this.state.searchQuery)
-        // callback from parent prop
+        this.props.handleYoutubeSearch(this.state.searchQuery)
     }
 
     render() {
