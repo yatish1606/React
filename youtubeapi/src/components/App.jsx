@@ -9,7 +9,8 @@ class App extends React.Component {
         super(props)
 
         this.state = {
-            videos : []
+            videos : [],
+            propsPassedToParentVideoDetails : null
         }
     }
     
@@ -20,15 +21,21 @@ class App extends React.Component {
             {params : { q : searchQuery}}
         )
         this.setState({videos : response.data.items})
-        console.log(this.state.videos)
-        
+    }
+
+    propsPassedToParentVideoDetails = (videoInfo) => {
+        console.log(videoInfo)
+        this.setState({propsPassedToParentVideoDetails: videoInfo})
     }
 
     render() {
         return (
             <div className="ui container" style={{marginTop:'20px'}}>
                 <SearchBar handleYoutubeSearch={this.handleYoutubeSearch}/>
-                <VideoList videos={this.state.videos}/>
+                <VideoList 
+                    videos={this.state.videos}
+                    propsPassedToParentVideoDetails={this.propsPassedToParentVideoDetails}
+                />
             </div>
         )
     }
