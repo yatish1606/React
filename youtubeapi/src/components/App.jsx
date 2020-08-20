@@ -13,6 +13,10 @@ class App extends React.Component {
             videos : [],
             videoDetails : null
         }
+
+        this.componentDidMount = () => {
+            this.handleYoutubeSearch('nature scenery')
+        }
     }
     
     handleYoutubeSearch = async (searchQuery) => {
@@ -22,7 +26,7 @@ class App extends React.Component {
             {params : { q : searchQuery}}
         )
         this.setState({
-            videos : response.data.items.slice(1,6), 
+            videos : response.data.items.slice(1,10), 
             videoDetails: response.data.items[0]
         })
     }
@@ -48,9 +52,7 @@ class App extends React.Component {
                             />
                         </div>
                     </div>
-                </div>
-                
-                
+                </div>    
             </div>
         )
     }
