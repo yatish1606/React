@@ -21,7 +21,10 @@ class App extends React.Component {
             '/search',
             {params : { q : searchQuery}}
         )
-        this.setState({videos : response.data.items})
+        this.setState({
+            videos : response.data.items.slice(1,6), 
+            videoDetails: response.data.items[0]
+        })
     }
 
     propsPassedToParentVideoDetails = videoInfo => {
@@ -33,11 +36,21 @@ class App extends React.Component {
         return (
             <div className="ui container" style={{marginTop:'20px'}}>
                 <SearchBar handleYoutubeSearch={this.handleYoutubeSearch}/>
-                <VideoDetail videoInfo={this.state.videoDetails}/>
-                <VideoList 
-                    videos={this.state.videos}
-                    propsPassedToParentVideoDetails={this.propsPassedToParentVideoDetails}
-                />
+                <div className="ui grid">
+                    <div className="ui row">
+                        <div className="eleven wide column">
+                            <VideoDetail videoInfo={this.state.videoDetails}/>
+                        </div>
+                        <div className="five wide column">
+                            <VideoList 
+                                videos={this.state.videos}
+                                propsPassedToParentVideoDetails={this.propsPassedToParentVideoDetails}
+                            />
+                        </div>
+                    </div>
+                </div>
+                
+                
             </div>
         )
     }

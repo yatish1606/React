@@ -5,11 +5,11 @@ const VideoDetail = props => {
     if(props.videoInfo) {
 
         const videoSource = `https://www.youtube.com/embed/${props.videoInfo.id.videoId}`
-        
+
         return (
             <div>
                 <div className="ui embed">
-                    <iframe src={videoSource}></iframe>
+                    <iframe title="video player" src={videoSource}></iframe>
                 </div>
                 <div className="ui segment">
                     <h4 className="ui header">{props.videoInfo.snippet.title}</h4>
