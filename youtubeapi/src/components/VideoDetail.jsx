@@ -3,8 +3,19 @@ import React from 'react'
 const VideoDetail = props => {
     
     if(props.videoInfo) {
+
+        const videoSource = `https://www.youtube.com/embed/${props.videoInfo.id.videoId}`
+        
         return (
-            <div>{props.videoInfo.snippet.title}</div>
+            <div>
+                <div className="ui embed">
+                    <iframe src={videoSource}></iframe>
+                </div>
+                <div className="ui segment">
+                    <h4 className="ui header">{props.videoInfo.snippet.title}</h4>
+                    <p>{props.videoInfo.snippet.description}</p>
+                </div>
+            </div>
         )
     } else {
         return (
