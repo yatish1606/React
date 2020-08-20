@@ -5,7 +5,7 @@ const Video = props => {
     return (
         <div 
             className="video-item item"
-            onClick={props.propsPassedToParentVideoDetails(props.videoInfo)}
+            onClick={() => props.propsPassedToParentVideoDetails(props.videoInfo)}
         >
             <img
                 className="ui image" 

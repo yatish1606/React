@@ -2,6 +2,7 @@ import React from 'react'
 import SearchBar from './SearchBar'
 import YoutubeAPI from '../api/youtube'
 import VideoList from './VideoList'
+import VideoDetail from './VideoDetail'
 
 class App extends React.Component {
 
@@ -10,7 +11,7 @@ class App extends React.Component {
 
         this.state = {
             videos : [],
-            propsPassedToParentVideoDetails : null
+            videoDetails : null
         }
     }
     
@@ -23,15 +24,16 @@ class App extends React.Component {
         this.setState({videos : response.data.items})
     }
 
-    propsPassedToParentVideoDetails = (videoInfo) => {
+    propsPassedToParentVideoDetails = videoInfo => {
+        this.setState({videoDetails: videoInfo})
         console.log(videoInfo)
-        this.setState({propsPassedToParentVideoDetails: videoInfo})
     }
 
     render() {
         return (
             <div className="ui container" style={{marginTop:'20px'}}>
                 <SearchBar handleYoutubeSearch={this.handleYoutubeSearch}/>
+                <VideoDetail videoInfo={this.state.videoDetails}/>
                 <VideoList 
                     videos={this.state.videos}
                     propsPassedToParentVideoDetails={this.propsPassedToParentVideoDetails}
