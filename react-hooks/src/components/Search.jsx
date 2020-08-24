@@ -25,9 +25,17 @@ const Search = () => {
     }
 
     React.useEffect(() => {
-        if(searchQuery) {
-            makeWikiAPIRequest(searchQuery)
-        }  
+        
+        const timeoutID = setTimeout(() => {
+            if(searchQuery) {
+                makeWikiAPIRequest(searchQuery)
+            }  
+        }, 500)
+
+        return () => {
+            clearTimeout(timeoutID)
+        }
+        
     }, [searchQuery])
 
     const renderedItems = results.map(item => {
