@@ -8,7 +8,7 @@ const Search = () => {
 
     const handleSearchQueryChange = event => setSearchQuery(event.target.value)
 
-    const makeWikiAPIRequest = async (searchQuery = 'wikipedia') => {
+    const makeWikiAPIRequest = async (searchQuery = '') => {
 
         const url = 'https://en.wikipedia.org/w/api.php'
 
@@ -25,12 +25,29 @@ const Search = () => {
     }
 
     React.useEffect(() => {
-        
-        makeWikiAPIRequest()
-            .then(response => console.log(response))
-            .catch(error => console.log(error))
-        
+        if(searchQuery) {
+            makeWikiAPIRequest(searchQuery)
+        }  
     }, [searchQuery])
+
+    const renderedItems = results.map(item => {
+        return (
+            <div className="item" key={item.pageid}>
+                <div className="right floated content">
+                    <a
+                        className="ui button"
+                        href={`https:\\en.wikipedia.org?curid=${item.pageid}`}
+                    >Go</a>
+                </div>
+                <div className="content">
+                    <div className="header">
+                        {item.title}
+                    </div>
+                    <span dangerouslySetInnerHTML={{__html : item.snippet}}></span>
+                </div>
+            </div>
+        )
+    })
 
     return (
         <div>
@@ -43,7 +60,9 @@ const Search = () => {
                         onChange={handleSearchQueryChange}
                     />
                 </div>
-                Hello
+            </div>
+            <div className="ui celled list">
+                {renderedItems}
             </div>
         </div>
     )
