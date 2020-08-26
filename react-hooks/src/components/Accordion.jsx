@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
-const Accordion = ({items}) => {
+const Accordion = ({items = []}) => {
 
     const [activeIndex, setActiveIndex] = useState(null)
 

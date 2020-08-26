@@ -20,3 +20,18 @@ export const items = [
         description: 'Yes, React hooks allow you to define your own hooks using the predefined primitive hooks provided by React. For Example, you can define the hook useCurrentState using the predefined hooks useState and useEffect'
     },
 ]
+
+export const options = [
+    {
+        label: 'Red',
+        value: 'red',
+    },
+    {
+        label: 'Blue',
+        value: 'blue',
+    },
+    {
+        label: 'Green',
+        value: 'green'
+    }
+]
