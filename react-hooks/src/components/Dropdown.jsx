@@ -6,12 +6,25 @@ const Dropdown = ({options = [], selectedColor, setSelectedColor}) => {
     const ref = useRef()
 
     useEffect(() => {
-        document.body.addEventListener('click', (event) => {
+
+        const onBodyClickedEvent = (event) => {
             if(ref.current.contains(event.target)) 
                 return
             setOpen(false)
-        })
-    }, []) 
+        }
+
+        document.body.addEventListener('click', onBodyClickedEvent )
+
+        // Even after unmounting the component, the refs will be destroyed but the onClickListener for 
+        // body element will still persist. If we click then, value of ref.current will be null because the component
+        // or its refs no longer exist, so any methods attached to it will return error. Returning a cleanup 
+        // function from useEffect will remove any persisting listeners attached to the DOM
+
+        return () => {
+            document.body.removeEventListener('click', onBodyClickedEvent)
+        }
+
+    }, [])  
 
     //    Note for event listeners : event listeners in a components do not necessarily get called 
     //    from child to parent(bubbling up). First, all listeners set up manually using 

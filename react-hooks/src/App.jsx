@@ -7,7 +7,7 @@ import Dropdown from './components/Dropdown'
 const App = () => {
 
     const [selectedColor, setSelectedColor] = useState(options[0])
-
+    const [showDropdown, setShowDropdown] = useState(false)
 
 
     return (
@@ -16,11 +16,17 @@ const App = () => {
                 items={items}
             /> */}
             {/* <Search/> */}
-            <Dropdown
-                options={options}
-                selectedColor={selectedColor}
-                setSelectedColor={setSelectedColor}
-            />
+
+            <button onClick={() => setShowDropdown(!showDropdown)}>Toggle Dropdown</button>
+            {
+                showDropdown ?
+                <Dropdown
+                    options={options}
+                    selectedColor={selectedColor}
+                    setSelectedColor={setSelectedColor}
+                />
+                : undefined
+            }
         </div>
     )
 }
