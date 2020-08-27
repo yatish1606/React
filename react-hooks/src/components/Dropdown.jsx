@@ -18,7 +18,7 @@ const Dropdown = ({options = [], selectedColor, setSelectedColor}) => {
         // Even after unmounting the component, the refs will be destroyed but the onClickListener for 
         // body element will still persist. If we click then, value of ref.current will be null because the component
         // or its refs no longer exist, so any methods attached to it will return error. Returning a cleanup 
-        // function from useEffect will remove any persisting listeners attached to the DOM
+        // function from useEffect() will remove any persisting listeners attached to the DOM
 
         return () => {
             document.body.removeEventListener('click', onBodyClickedEvent)
