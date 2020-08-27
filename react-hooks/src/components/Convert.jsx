@@ -5,12 +5,17 @@ import {GOOGLE_TRANSLATE_API_KEY} from '../config'
 const Convert = ({language, text}) => {
 
     const [translatedLanguage, setTranslatedLanguage] = useState('')
+    const [debouncedText, setDebouncedText] = useState('')
     const url = 'https://translation.googleapis.com/language/translate/v2'
 
+    const timeoutID = setTimeout(() => {
+        setDebouncedText(text)
+    }, 500)
+
     useEffect(() => {
-        
+
         (async () => {
-            const response = await axios.get(url, {
+            const response = await axios.post(url, {}, {
                 params: {
                     q: text,
                     target: language.value,
@@ -20,7 +25,11 @@ const Convert = ({language, text}) => {
             setTranslatedLanguage(response.data.data.translations[0].translatedText)
         })()
 
-    }, [language, text])
+        return () => {
+            clearTimeout(timeoutID)
+        }
+
+    }, [language, debouncedText])
 
     return (
         <div>{translatedLanguage}</div>
