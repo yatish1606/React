@@ -35,3 +35,18 @@ export const options = [
         value: 'green'
     }
 ]
+
+export const translationOptions = [
+    {
+        label : 'Afrikaans',
+        value: 'af',
+    },
+    {
+        label : 'Hindi',
+        value: 'hi'
+    },
+    {
+        label: 'Arabic',
+        value: 'ar'
+    }
+]

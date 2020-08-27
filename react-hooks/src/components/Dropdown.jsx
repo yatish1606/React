@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-const Dropdown = ({options = [], selectedColor, setSelectedColor}) => {
+const Dropdown = ({label = '', options = [], selected = {}, setSelected = () => {}}) => {
 
     const [open, setOpen] = useState(false)
     const ref = useRef()
@@ -34,30 +34,31 @@ const Dropdown = ({options = [], selectedColor, setSelectedColor}) => {
         
 
     const renderedItems = options
-        .filter(option => option !== selectedColor)
+        .filter(option => option !== selected)
         .map(item => {
             return (
                 <div 
                     className="item" 
                     key={item.value}
-                    onClick={() => setSelectedColor(item)}
+                    onClick={() => setSelected(item)}
                 >
                     <div>{item.label}</div>
                 </div>
             )
         })
+        
 
 
     return (
         <div className="ui form" ref={ref}>
             <div className="field">
-                <label className="label">Select color</label>
+                <label className="label">{label}</label>
                 <div 
                     className={`ui dropdown selection ${open ? 'visible active' : ''}`}
                     onClick={() => setOpen(!open)}
                 >
                     <i className="dropdown icon"></i>
-                    <div className="text">{selectedColor.label}</div>
+                    <div className="text">{selected.label}</div>
                     <div className={`menu ${open ? 'visible transition' : ''}`}>
                         {renderedItems}
                     </div>
