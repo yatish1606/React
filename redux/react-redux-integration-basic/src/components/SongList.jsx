@@ -7,7 +7,10 @@ class SongList extends React.Component {
     renderList = () => {
         return this.props.songs.map(song => {
             return (
-                <div className="item" key={song.name}>
+                <div 
+                    className="item" 
+                    key={song.name}
+                >
                     <div className="right floated content">
                         <button 
                             className="ui button primary"
@@ -34,7 +37,6 @@ class SongList extends React.Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state)
     return { songs : state.songs }
 }
 
