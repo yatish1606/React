@@ -3,7 +3,7 @@ import PostList from './PostList'
 
 const App = () => {
     return(
-        <div>
+        <div className="ui container">
             this is app
             <PostList/>
         </div>
