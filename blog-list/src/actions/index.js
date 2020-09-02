@@ -2,8 +2,9 @@ import JSONPlaceholder from '../api/JSONPlaceholder'
 import _ from 'lodash'
 // Async await doesnt work for action creators
 
-export const fetchPostsAndUsers = () => async (dispatch) => {
+export const fetchPostsAndUsers = () => async (dispatch, getState) => {
     await dispatch(fetchPosts())
+    console.log(getState().posts)
 }
 
 export const fetchPosts = () => async dispatch => {
