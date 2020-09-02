@@ -8,7 +8,7 @@ const UserHeader = props => {
         console.log(props.fetchUser(props.userID))
     }, [])
 
-    const user = props.users.find(user => user.id === props.userID)
+    const { user } = props
 
     if(!user) {
         return null
@@ -22,8 +22,8 @@ const UserHeader = props => {
     )
 }
 
-const mapStateToProps = state => {
-    return { users : state.users}
+const mapStateToProps = (state, ownProps) => {
+    return { user : state.users.find(user => user.id === ownProps.userID)}
 }
 
 export default connect(mapStateToProps, {fetchUser})(UserHeader)
