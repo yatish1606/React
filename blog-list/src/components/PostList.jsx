@@ -10,8 +10,9 @@ class PostList extends React.Component {
     }
 
     renderList = () => {
-        if(!this.props.posts) return null
-        return Array.from(this.props.posts).map(post => {
+        
+        return this.props.posts  
+        ? Array.from(this.props.posts).map(post => {
             
             return (
                 <div className="item" key={post.id}>
@@ -25,7 +26,8 @@ class PostList extends React.Component {
                     </div>
                 </div>
             )
-        })
+        }) 
+        : null
     }
 
     render() {
@@ -33,7 +35,6 @@ class PostList extends React.Component {
         return (
             <div className="ui relaxed divided list">
                 {this.renderList()}
-                hello
             </div>
         )
     }

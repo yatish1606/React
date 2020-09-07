@@ -4,7 +4,10 @@ import _ from 'lodash'
 
 export const fetchPostsAndUsers = () => async (dispatch, getState) => {
     await dispatch(fetchPosts())
-    console.log(getState().posts)
+    const uniqueIDs = _.uniq(_.map(getState().posts, 'userId'))
+    uniqueIDs.forEach(id => dispatch(fetchUser(id)))
+
+    // Promise.all(uniqueIDs.map(id => dispatch(fetchUser(id)))).then(res => console.log(res))
 }
 
 export const fetchPosts = () => async dispatch => {
