@@ -5,9 +5,16 @@ import _ from 'lodash'
 export const fetchPostsAndUsers = () => async (dispatch, getState) => {
     await dispatch(fetchPosts())
     const uniqueIDs = _.uniq(_.map(getState().posts, 'userId'))
-    uniqueIDs.forEach(id => dispatch(fetchUser(id)))
+    // uniqueIDs.forEach(id => dispatch(fetchUser(id)))
 
-    // Promise.all(uniqueIDs.map(id => dispatch(fetchUser(id)))).then(res => console.log(res))
+    Promise.all(uniqueIDs.map(id => dispatch(fetchUser(id)))).then(res => console.log(res))
+
+    // _.chain(getState().posts)
+    //     .map('userId')
+    //     .uniq()
+    //     .forEach(id => dispatch(fetchUser(id)))
+    //     .value()
+        
 }
 
 export const fetchPosts = () => async dispatch => {
@@ -16,8 +23,8 @@ export const fetchPosts = () => async dispatch => {
 }
 
 export const fetchUser = id => async dispatch => {
-        const response = await JSONPlaceholder.get(`/users/${id}`)
-        dispatch({type: 'FETCH_USER', payload : response.data})
+    const response = await JSONPlaceholder.get(`/users/${id}`)
+    dispatch({type: 'FETCH_USER', payload : response.data})
 }
 
 
