@@ -1,9 +1,10 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-
-const one = () => <div>one</div>
-
-const two = () => <div>two</div>
+import StreamList from './streams/StreamList'
+import StreamCreate from './streams/StreamCreate'
+import StreamEdit from './streams/StreamEdit'
+import StreamDelete from './streams/StreamDelete'
+import StreamShow from './streams/StreamShow'
 
 // exact={true} will tell React router to not display other paths that match a part of the provided path
 // so a given path of '/a' will match all paths containing '/', like '/', '/b', and all will be displayed
@@ -20,8 +21,11 @@ const App = () => {
         <div>
             <Router>
                 <div>
-                    <Route path="/" exact component={one}/>
-                    <Route path="/two" component={two}/>
+                    <Route path="/" exact component={StreamList}/>
+                    <Route path="/streams/create" exact component={StreamCreate}/>
+                    <Route path="/streams/edit" exact component={StreamEdit}/>
+                    <Route path="/streams/delete" exact component={StreamDelete}/>
+                    <Route path="/streams/show" exact component={StreamShow}/>
                 </div>
             </Router>
         </div>
@@ -40,3 +44,6 @@ export default App
 // React Router adds a # after url
 
 // MemoryRouter => 
+
+
+// Routes for streams in README.md of streams folder inside /components
