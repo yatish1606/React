@@ -52,7 +52,7 @@ class HomeForm extends Component {
                 {
                     errorMessage: 'Email is invalid',
                     isValid: () => {
-                        return this._isEmail(form.from)
+                        return _isEmail(form.from)
                     }
                 }
             ],
@@ -66,7 +66,7 @@ class HomeForm extends Component {
                 {
                     errorMessage: 'Email is invalid',
                     isValid: () => {
-                        return this._isEmail(form.to)
+                        return _isEmail(form.to)
                     }
                 }
             ],

@@ -60,13 +60,13 @@ table {
 
 body {
   font-family: "Nunito Sans", "sans-serif";
-  background: gold;
+  background: #0688D5;
   color: #93969D;
   font-size: 14px;
 }
 
 a {
-  color: gold;
+  color: #0688D5;
   text-decoration: none;
 }
 
@@ -236,20 +236,20 @@ a {
   text-align: center;
   display: block;
   border-radius: 5px;
-  border: 1px solid gold;
+  border: 1px solid #0688D5;
   padding: 7px 15px;
   font-weight: 600;
-  color: gold;
+  color: #0688D5;
   background: #fff;
   text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
 }
 .app-form-actions .app-button.primary {
   color: #fff;
-  background: gold;
+  background: #0688D5;
 }
 .app-form-actions .app-button.app-button-link {
-  color: gold;
+  color: #0688D5;
   border: none;
   background: none;
 }
@@ -334,7 +334,7 @@ a {
   height: 12px;
   line-height: 15px;
   background-color: #EDF3FF;
-  border: 1px solid gold;
+  border: 1px solid #0688D5;
   margin: 5px 0 5px 0;
   border-radius: 6px;
   position: relative;
@@ -343,7 +343,7 @@ a {
 .app-progress .app-progress-bar {
   height: 12px;
   line-height: 12px;
-  background-color: gold;
+  background-color: #0688D5;
   position: absolute;
   top: 0;
   left: 0;
@@ -472,7 +472,7 @@ a {
   left: 0;
   top: 0;
   height: 50px;
-  background: red;
+  background: #0688D5;
   z-index: 10;
 }
 .app-top-bar .app-top-bar-inner {
