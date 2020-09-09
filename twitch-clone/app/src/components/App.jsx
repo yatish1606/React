@@ -5,6 +5,8 @@ import StreamCreate from './streams/StreamCreate'
 import StreamEdit from './streams/StreamEdit'
 import StreamDelete from './streams/StreamDelete'
 import StreamShow from './streams/StreamShow'
+import Header from './commons/Header'
+import '../css/app.css'
 
 // exact={true} will tell React router to not display other paths that match a part of the provided path
 // so a given path of '/a' will match all paths containing '/', like '/', '/b', and all will be displayed
@@ -21,6 +23,7 @@ const App = () => {
         <div>
             <Router>
                 <div>
+                    <Header/>
                     <Route path="/" exact component={StreamList}/>
                     <Route path="/streams/create" exact component={StreamCreate}/>
                     <Route path="/streams/edit" exact component={StreamEdit}/>
