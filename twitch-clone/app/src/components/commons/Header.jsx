@@ -1,6 +1,9 @@
 import React from 'react'
-import '../../css/Header.css'
 import { Link } from 'react-router-dom'
+
+import '../../css/Header.css'
+
+import GoogleAuthentication from './GoogleAuthentication'
 
 const Header = () => {
     return (
@@ -18,7 +21,7 @@ const Header = () => {
                 </Link>  
                 <Link to='/'>
                     <div className="header-login header-other-item">
-                        login
+                        <GoogleAuthentication/>
                     </div>
                 </Link>  
             </span>
