@@ -21,6 +21,21 @@
     padding: 10px;
 }
 
+.header-settings {
+    width: auto;
+    height: auto;
+    border-radius: 100%;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s ease-in-out;
+}
+.header-settings:hover {
+    background-color: #d3d3d34a;
+    transition: 0.2s ease-in-out;
+}
+
 .header-other-item {
     margin: 0 5px;
     text-decoration: none;

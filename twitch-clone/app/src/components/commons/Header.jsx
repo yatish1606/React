@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Settings } from 'react-feather'
 
 import '../../css/Header.css'
 
@@ -16,7 +17,7 @@ const Header = () => {
             <span className="header-other">
                 <Link to='/'>
                     <div className="header-settings header-other-item">
-                        settings
+                        <Settings className="btn-round" size={20} color='grey'/>
                     </div>
                 </Link>  
                 <Link to='/'>

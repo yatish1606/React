@@ -2,8 +2,54 @@ html body {
     margin: 0;
     padding: 0;
     text-decoration: none;
+
+    --fontFamily : 'Raleway', sans-serif;
+    --primaryColor : mediumblue;
 }
 
 a {
     text-decoration: none;
+}
+
+.btn {
+    min-width: 70px;
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    padding: 8px 10px 10px 0px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    cursor: pointer;
+    color: white;
+    font-family: var(--fontFamily);
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 1px;
+    border: 2.5px solid transparent;
+    transition: 0.2s ease-in-out;
+}
+.btn * {
+    padding: 0 8px;
+}
+
+.btn-icon {
+    color: white;
+}
+
+.btn:hover .btn-icon {
+    color: var(--primaryColor);
+    transition: 0.2s ease-in-out;
+}
+
+.btn:hover {
+    background-color: transparent;
+    border: 2.5px solid var(--primaryColor);
+    transition: 0.2s ease-in-out;
+    color: var(--primaryColor);
+    transition: 0.2s ease-in-out;
+}
+
+.primary {
+    background-color: var(--primaryColor);
 }
