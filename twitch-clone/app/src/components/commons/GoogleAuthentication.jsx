@@ -1,8 +1,10 @@
 import React from 'react'
 import { LogIn, LogOut } from 'react-feather';
 import OutsideClickHandler from 'react-outside-click-handler'
+import { connect } from 'react-redux'
 
 import { GOOGLE_OAUTH_CLIENT_ID } from '../../config'
+import { signIn, signOut } from '../../actions'
 
 import '../../css/app.css'
 import '../../css/Header.css'
@@ -10,7 +12,6 @@ import '../../css/Header.css'
 class GoogleAuthentication extends React.Component {
 
     state = {
-        isSignedIn : null,
         profileInfo : null,
         showAccount : false
     }  
@@ -19,8 +20,6 @@ class GoogleAuthentication extends React.Component {
         super(props);
 
         this.wrapperRef = React.createRef();
-        // this.setWrapperRef = this.setWrapperRef.bind(this);
-        // this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
         
@@ -33,10 +32,10 @@ class GoogleAuthentication extends React.Component {
             })
             .then(() => {
                 this.auth = window.gapi.auth2.getAuthInstance()
-                this.setState({ isSignedIn : this.auth.isSignedIn.get()})
+                this.onAuthStateChange(this.auth.isSignedIn.get())
                 this.auth.isSignedIn.listen(this.onAuthStateChange)
 
-                if(this.state.isSignedIn) {
+                if(this.props.isSignedIn) {
             
                     const profileInfo = this.auth.currentUser.get().getBasicProfile()
                     const profile = {
@@ -46,14 +45,12 @@ class GoogleAuthentication extends React.Component {
                         profilePhoto : profileInfo.jK
                     }
                     this.setState({profileInfo : profile})
-                    
                 }
             })
         })
-
     }
 
-    onAuthStateChange = () => this.setState({ isSignedIn : this.auth.isSignedIn.get()})
+    onAuthStateChange = isSignedIn => isSignedIn ? this.props.signIn() : this.props.signOut() 
 
     googleSignOut = () => {
         window.gapi.auth2.getAuthInstance().signOut()
@@ -64,7 +61,7 @@ class GoogleAuthentication extends React.Component {
     }        
 
     renderAuthButton() {
-        switch(this.state.isSignedIn) {
+        switch(this.props.isSignedIn) {
             case null :
                 return (
                     <div>null</div>
@@ -97,8 +94,6 @@ class GoogleAuthentication extends React.Component {
 
     render() {
     
-        console.log(this.state.showAccount)
-
         return (
             <div>
 
@@ -121,4 +116,11 @@ class GoogleAuthentication extends React.Component {
     }
 }
 
-export default GoogleAuthentication
+const mapStateToProps = state => {
+    console.log(state)
+    return {
+        isSignedIn: state.auth.isSignedIn
+    }
+}
+
+export default connect(mapStateToProps, {signIn, signOut})(GoogleAuthentication)
