@@ -20,9 +20,9 @@ import '../css/app.css'
 
 const App = () => {
     return (
-        <div>
+        <div style={{minHeight:'100%'}}>
             <Router>
-                <div>
+                <div style={{minHeight:'100vh'}}>
                     <Header/>
                     <Route path="/" exact component={StreamList}/>
                     <Route path="/streams/create" exact component={StreamCreate}/>
