@@ -1,0 +1,14 @@
+{
+  "streams": [
+    {
+      "title": "First stream",
+      "description": "Description for the fist stream, using for testing",
+      "id": 1
+    },
+    {
+      "title": "First stream",
+      "description": "Description for the fist stream, using for testing",
+      "id": 2
+    }
+  ]
+}
