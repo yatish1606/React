@@ -8,6 +8,8 @@ html body {
     --primaryColor : mediumblue;
     --lightGrey : #eeeeee;
     --dangerColor : #DE1407;
+    --mainDark: #434343;
+    --grey: #ababab
 }
 
 #root {
@@ -56,7 +58,11 @@ a {
     border: 2.5px solid transparent;
     transition: 0.2s ease-in-out;
 }
+.btn * {
+    margin: auto auto;
+}
 .btn.no-icon {
+    display: block;
     padding: 8px 10px 10px 10px;
 }
 .btn * {
@@ -72,7 +78,15 @@ a {
     transition: 0.2s ease-in-out;
 }
 
-.btn:hover {
+.primary {
+    background-color: var(--primaryColor);
+}
+
+.danger {
+    background-color: var(--dangerColor);
+}
+
+.primary:hover {
     background-color: transparent;
     border: 2.5px solid var(--primaryColor);
     transition: 0.2s ease-in-out;
@@ -80,9 +94,14 @@ a {
     transition: 0.2s ease-in-out;
 }
 
-.primary {
-    background-color: var(--primaryColor);
+.danger:hover {
+    background-color: transparent;
+    border: 2.5px solid var(--dangerColor);
+    transition: 0.2s ease-in-out;
+    color: var(--dangerColor);
+    transition: 0.2s ease-in-out;
 }
+
 
 .form-field {
     display: flex;
@@ -117,4 +136,37 @@ a {
     font-weight: 600;
     color: var(--dangerColor);
     padding: 8px 0;
+}
+
+/* CSS FOR STREAMS */
+
+
+.stream-item {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0;
+    justify-content: space-between;
+}
+.stream-item-title {
+    font-family: var(--fontFamily);
+    font-size: 25px;
+    color: var(--mainDark);
+    font-weight: 600;
+    margin: 10px 0;
+}
+.stream-item-description {
+    font-family: var(--fontFamily);
+    font-size: 20px;
+    color: var(--grey);
+    font-weight: 500;
+    margin: 0;
+}
+.admin-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.admin-buttons * {
+    margin: 5px;
 }

@@ -14,6 +14,12 @@
       "title": "Cat and Dog",
       "description": "A cat meows and dog barks",
       "id": 3
+    },
+    {
+      "title": "Stream with userID",
+      "description": "Description for stream with userID",
+      "userID": "108838898611885361290",
+      "id": 4
     }
   ]
 }

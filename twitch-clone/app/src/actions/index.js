@@ -16,8 +16,9 @@ export const signOut = () => {
     }
 }
 
-export const createStream = formValues => async dispatch => {
-    const response = await API.post('/streams', formValues)
+export const createStream = formValues => async (dispatch, getState) => {
+    const { userID } = getState().auth
+    const response = await API.post('/streams', {...formValues, userID})
     dispatch({
         type: CREATE_STREAM,
         payload: response.data
