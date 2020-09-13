@@ -48,7 +48,7 @@ a {
     flex-direction: row;
     padding: 8px 10px 10px 0px;
     box-sizing: border-box;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     cursor: pointer;
     color: white;
     font-family: var(--fontFamily);
@@ -73,8 +73,14 @@ a {
     color: white;
 }
 
+
 .btn:hover .btn-icon {
     color: var(--primaryColor);
+    transition: 0.2s ease-in-out;
+}
+
+.btn:hover .btn-icon-danger {
+    color: var(--dangerColor);
     transition: 0.2s ease-in-out;
 }
 
@@ -167,6 +173,6 @@ a {
     align-items: center;
     justify-content: space-between;
 }
-.admin-buttons * {
+.admin-buttons button {
     margin: 5px;
 }

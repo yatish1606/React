@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { Edit3, Trash2 } from 'react-feather'
 
 import { fetchStreams } from '../../actions'
 
@@ -29,8 +30,14 @@ class StreamList extends React.Component {
         if(stream.userID === this.props.currentUserID) {
             return (
                 <span className="admin-buttons">
-                    <button className="btn no-icon primary">Edit</button>
-                    <button className="btn no-icon danger">Delete</button>
+                    <button className="btn primary">
+                            <Edit3 className="btn-icon" size={18} />
+                            Edit
+                    </button>
+                    <button className="btn danger">
+                        <Trash2 size={18} className="btn-icon-danger"/>
+                        Delete
+                    </button>
                 </span>
             )
         }
