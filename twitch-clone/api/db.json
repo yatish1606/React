@@ -20,6 +20,12 @@
       "description": "Description for stream with userID",
       "userID": "108838898611885361290",
       "id": 4
+    },
+    {
+      "title": "Example for history",
+      "description": "Description for history",
+      "userID": "108838898611885361290",
+      "id": 5
     }
   ]
 }

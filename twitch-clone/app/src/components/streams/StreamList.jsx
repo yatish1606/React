@@ -16,7 +16,7 @@ class StreamList extends React.Component {
     renderCreateStreamButton = () => {
         if(this.props.isSignedIn) {
             return (
-                <div>
+                <div style={{textAlign: 'end'}}>
                     <Link to="/streams/create">
                         <button className="btn no-icon primary">Create Stream</button>
                     </Link>

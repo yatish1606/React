@@ -1,5 +1,6 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { Router, Route, Link } from 'react-router-dom'
+
 import StreamList from './streams/StreamList'
 import StreamCreate from './streams/StreamCreate'
 import StreamEdit from './streams/StreamEdit'
@@ -7,6 +8,7 @@ import StreamDelete from './streams/StreamDelete'
 import StreamShow from './streams/StreamShow'
 import Header from './commons/Header'
 import '../css/app.css'
+import history from '../history'
 
 // exact={true} will tell React router to not display other paths that match a part of the provided path
 // so a given path of '/a' will match all paths containing '/', like '/', '/b', and all will be displayed
@@ -21,7 +23,7 @@ import '../css/app.css'
 const App = () => {
     return (
         <div style={{minHeight:'100%'}}>
-            <Router>
+            <Router history={history}>
                 <div style={{minHeight:'100vh'}}>
                     <Header/>
                     <Route path="/" exact component={StreamList}/>
