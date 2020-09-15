@@ -30,10 +30,12 @@ class StreamList extends React.Component {
         if(stream.userID === this.props.currentUserID) {
             return (
                 <span className="admin-buttons">
-                    <button className="btn primary">
-                            <Edit3 className="btn-icon" size={18} />
-                            Edit
-                    </button>
+                    <Link to={`/streams/edit/${stream.id}`}>
+                        <button className="btn primary">
+                                <Edit3 className="btn-icon" size={18} />
+                                Edit
+                        </button>
+                    </Link>
                     <button className="btn danger">
                         <Trash2 size={18} className="btn-icon-danger"/>
                         Delete

@@ -8,7 +8,7 @@ Routes for streams :
 
     /streams/create     StreamCreate    create a new stream
 
-    /streams/edit       StreamEdit      edit an existing stream
+    /streams/edit/:id   StreamEdit      edit an existing stream with id
 
     /streams/delete     StreamDelete    delete existing stream
 
