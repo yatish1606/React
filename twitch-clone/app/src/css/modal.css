@@ -1,0 +1,24 @@
+@import './app.css';
+
+.modal-background {
+    width: 100vw;
+    height: 100vh;
+    background-color: #0000003a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.modal-content-container {
+    min-width: 30vw;
+    min-height: 30vh;
+    background-color: white;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 20px;
+    z-index: 101;
+}
