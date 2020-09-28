@@ -21,4 +21,37 @@
     box-sizing: border-box;
     padding: 20px;
     z-index: 101;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.modal-content-container h2 {
+    font-family: var(--fontFamily);
+    font-size: 25px;
+    color: var(--mainDark);
+    font-weight: 700;
+    margin: 0;
+    text-align: center;
+}
+
+.modal-content-container p {
+    font-family: var(--fontFamily);
+    font-size: 17px;
+    color: var(--grey);
+    font-weight: 500;
+    margin: 0;
+    text-align: center;
+}
+
+.modal-actions{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+.modal-actions * {
+    margin: 0 5px;
 }

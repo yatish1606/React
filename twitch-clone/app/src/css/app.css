@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
+
 html body {
     margin: 0;
     padding: 0;
     text-decoration: none;
     min-height: 100vh;
 
-    --fontFamily : 'Raleway', sans-serif;
-    --primaryColor : mediumblue;
+    --fontFamily : 'Lexend Deca', sans-serif;
+    --primaryColor : #0871EF;
     --lightGrey : #eeeeee;
     --dangerColor : #DE1407;
     --mainDark: #434343;
@@ -88,17 +90,23 @@ a {
     background-color: var(--primaryColor);
 }
 
+.secondary {
+    background-color: transparent;
+    color: var(--primaryColor);
+}
+
 .danger {
     background-color: var(--dangerColor);
 }
 
-.primary:hover {
+.primary:hover, .secondary:hover {
     background-color: transparent;
     border: 2.5px solid var(--primaryColor);
     transition: 0.2s ease-in-out;
     color: var(--primaryColor);
     transition: 0.2s ease-in-out;
 }
+
 
 .danger:hover {
     background-color: transparent;
