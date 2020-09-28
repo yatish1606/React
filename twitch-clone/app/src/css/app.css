@@ -108,6 +108,13 @@ a {
     transition: 0.2s ease-in-out;
 }
 
+.form-title {
+    font-family: var(--fontFamily);
+    font-weight: 700;
+    font-size: 25px;
+    padding: 0;
+    margin: 100px 0 60px 0;
+}
 
 .form-field {
     display: flex;

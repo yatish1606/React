@@ -17,8 +17,8 @@ import history from '../history'
 // dont use anchor tags for navigating when using React Router, as it will cause an entire new batch of requests 
 // to be made, and will dump all javascript and Redux state data
 // use <Link/> from react-router-dom instead, href === to
-// React router prevents browser from maing a new request and stops from fetching a new index.html file so 
-// page remains same, but path and url changes , and all <Route/> components inside <BrowserRouter/> re render
+// React router prevents browser from making a new request and stops from fetching a new index.html file so 
+// page remains same, but path and url changes , and all <Route/> components inside <BrowserRouter/> are re rendered
 
 const App = () => {
     return (

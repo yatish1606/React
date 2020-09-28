@@ -3,7 +3,6 @@ import API from '../apis/streams'
 import history from '../history'
 
 export const signIn = userID => {
-    console.log('signin ac')
     return {
         type: SIGN_IN,
         payload: userID
@@ -11,7 +10,6 @@ export const signIn = userID => {
 }
 
 export const signOut = () => {
-    console.log('signout ac')
     return {
         type: SIGN_OUT
     }
