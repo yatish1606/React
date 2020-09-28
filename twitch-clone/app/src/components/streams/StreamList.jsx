@@ -80,7 +80,7 @@ const mapStateToProps = state => {
     return { 
         streams: Object.values(state.streams),
         currentUserID: state.auth.userID,
-        isSignedIn: state.auth.userID
+        isSignedIn: state.auth.isSignedIn
     }
 } 
 

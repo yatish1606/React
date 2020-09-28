@@ -38,11 +38,12 @@ class GoogleAuthentication extends React.Component {
                 if(this.props.isSignedIn) {
             
                     const profileInfo = this.auth.currentUser.get().getBasicProfile()
+                    console.log(profileInfo)
                     const profile = {
-                        firstName : profileInfo.GV,
-                        lastName : profileInfo.HT,
+                        firstName : profileInfo.qV,
+                        lastName : profileInfo.sT,
                         ID : profileInfo.Ad,
-                        profilePhoto : profileInfo.jK
+                        profilePhoto : profileInfo.$J
                     }
                     this.setState({profileInfo : profile})
                 }
