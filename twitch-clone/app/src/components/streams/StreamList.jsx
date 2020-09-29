@@ -52,8 +52,10 @@ class StreamList extends React.Component {
             return (
                 <div key={stream.id} className="stream-item">
                     <div>
-                        <p className="stream-item-title">{stream.title}</p>
-                        <p className="stream-item-description">{stream.description}</p>
+                        <Link to={`/streams/${stream.id}`}>
+                            <p className="stream-item-title">{stream.title}</p>
+                            <p className="stream-item-description">{stream.description}</p>
+                        </Link>                        
                     </div>
                     <div>
                         {this.renderAdmin(stream)}

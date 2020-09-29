@@ -12,4 +12,4 @@ Routes for streams :
 
     /streams/delete/:id StreamDelete    delete existing stream
 
-    /streams/show       StreamShow      show a specified stream full screen
+    /streams/:id        StreamShow      show a specified stream full screen
