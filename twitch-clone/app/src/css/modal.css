@@ -19,7 +19,7 @@
     background-color: white;
     border-radius: 10px;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 20px 40px;
     z-index: 101;
     display: flex;
     flex-direction: column;
@@ -34,6 +34,8 @@
     font-weight: 700;
     margin: 0;
     text-align: center;
+    padding: 10px 0;
+    max-width: 80%;
 }
 
 .modal-content-container p {
@@ -43,6 +45,14 @@
     font-weight: 500;
     margin: 0;
     text-align: center;
+    padding: 10px 0;
+    max-width: 80%;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .modal-actions{
