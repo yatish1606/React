@@ -17,7 +17,8 @@ class LoadingModal extends React.Component {
                             animationData={loadingAnimation} 
                             loop 
                             autoplay 
-                            style={{width: '40%', height: 'auto'}}/>
+                            style={{width: '40%', height: 'auto'}}
+                        />
                     ]}
                 />
             </div>

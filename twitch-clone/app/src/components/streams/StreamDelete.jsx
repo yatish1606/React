@@ -1,7 +1,7 @@
 import React from 'react'
 import history from '../../history'
 import Modal from '../commons/Modal'
-import { fetchStream } from '../../actions'
+import { fetchStream, deleteStream } from '../../actions'
 import { connect } from 'react-redux'
 import LoadingModal from '../commons/LoadingModal'
 
@@ -15,18 +15,16 @@ class StreamDelete extends React.Component {
         
         return this.props.stream ? (
             <div>
-                {/* <Modal
+                <Modal
                     title="Delete Stream?"
-                    description="Are you sure you want to delete this stream?"
+                    description={`Are you sure you want to delete '${this.props.stream.title}' ?`}
                     actions = {[
                         {name: 'Cancel', class: 'secondary', action:'goback', onClick: () => history.push('/')},
-                        {name:'Delete', class:'primary',action:'goback', onClick: () => history.push('/')},
+                        {name:'Delete', class:'primary',action:'goback', onClick:  () => this.props.deleteStream(this.props.match.params.id)},
                     ]}
                     onDismiss={() => history.push('/')}
                     stream={this.props.stream}
                 />
-                 */}
-                <LoadingModal/>
             </div>
         ) : <LoadingModal/>
     }
@@ -38,4 +36,4 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps, {fetchStream})(StreamDelete)
+export default connect(mapStateToProps, {fetchStream, deleteStream})(StreamDelete)
