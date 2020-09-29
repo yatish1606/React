@@ -1,15 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import history from '../../history'
 
 import '../../css/modal.css'
 
 class Modal extends React.Component {
-
+ 
     renderActionButtons = actions => {
-        return actions.map(action => {
+        return actions.map((action, index) => {
             return (
-                <button className={`btn ${action.class} no-icon`}>{action.name}</button>
+                <button 
+                    key={index}
+                    className={`btn ${action.class} no-icon`}
+                    onClick={action.onClick}
+                >{action.name}</button>
             )
         })
     }
@@ -23,7 +26,7 @@ class Modal extends React.Component {
             <div 
                 className="modal-background" 
                 style={{display: this.props.displayModal}}
-                onClick={() => history.push('/')}
+                onClick={this.props.onDismiss}
             >
                 <div 
                     className="modal-content-container"

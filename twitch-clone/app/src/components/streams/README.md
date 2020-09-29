@@ -10,6 +10,6 @@ Routes for streams :
 
     /streams/edit/:id   StreamEdit      edit an existing stream with id
 
-    /streams/delete     StreamDelete    delete existing stream
+    /streams/delete/:id StreamDelete    delete existing stream
 
     /streams/show       StreamShow      show a specified stream full screen
